@@ -1,0 +1,73 @@
+# Java Class Files
+*.class
+
+# Log Files
+*.log
+
+# BlueJ Files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# VS Code
+.vscode/
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Temporary Files
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs and caches
+logs/
+*.log
+
+# Optional: DB/credentials
+db.properties
+*.sql
+*.db
+*.bak
+
+# Web application artifacts
+*.war
+*.ear
+
+# Tomcat / Jetty
+work/
+temp/
