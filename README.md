@@ -63,7 +63,7 @@ Update the database credentials in `DBUtil.java` to match your local MySQL setti
 private static final String URL = "jdbc:mysql://localhost:3306/customercare";
 private static final String USER = "root";     // change if your MySQL user is different
 private static final String PASS = "";         // change if your MySQL has a password
-
+```
 
 ---
 
