@@ -52,3 +52,39 @@ INSERT INTO user (type, name, email, password) VALUES
 ('customer', 'Sanduni Fernando', 'sanduni@example.com', 'Test@1234'),
 ('support_agent', 'Dilan Wickrama', 'dilan@example.com', 'Test@1234');
 
+
+
+---
+
+### 4️⃣ Configure Database Connection
+
+Update the database credentials in `DBUtil.java` to match your local MySQL settings:
+
+```java
+private static final String URL = "jdbc:mysql://localhost:3306/customercare";
+private static final String USER = "root";     // change if your MySQL user is different
+private static final String PASS = "";         // change if your MySQL has a password
+
+
+---
+
+### 5️⃣ Add Tomcat Server in Eclipse
+
+1. Open Eclipse and go to **Window > Show View > Servers**.
+2. In the **Servers** tab, right-click → **New > Server**.
+3. Choose your version of **Apache Tomcat** from the list.
+4. Click **Next**, select the Tomcat installation directory on your machine, and click **Finish**.
+5. Once the server is created, right-click on **Servers** → **Add and Remove**.
+6. Add your project to the server and click **Finish**.
+7. Click the **Start** button to start the server.
+
+---
+
+### 6️⃣ Run the Application
+
+1. Right-click on your project in Eclipse.
+2. Select **Run As > Run on Server**.
+3. Once the server starts, open your browser and go to the following URL: 
+    http://localhost:8080/customercare/login
+
+
