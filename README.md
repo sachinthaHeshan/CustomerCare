@@ -51,8 +51,7 @@ INSERT INTO user (type, name, email, password) VALUES
 ('support_agent', 'Kavindu Jayasuriya', 'kavindu@example.com', 'Test@1234'),
 ('customer', 'Sanduni Fernando', 'sanduni@example.com', 'Test@1234'),
 ('support_agent', 'Dilan Wickrama', 'dilan@example.com', 'Test@1234');
-
-
+```
 
 ---
 
