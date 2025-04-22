@@ -1,8 +1,8 @@
-<%@ page import="com.customercare.model.User" %>
+<%@ page import="com.customercare.model.User"%>
 <%
-    User user = (User) session.getAttribute("user");
-    if (user == null) {
-        response.sendRedirect("login");
-        return;
-    }
+User user = (User) session.getAttribute("user");
+if (user == null) {
+	response.sendRedirect("login");
+	return;
+}
 %>
