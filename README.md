@@ -45,6 +45,7 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL
 );
 
+-- Sample data
 INSERT INTO user (type, name, email, password) VALUES
 ('customer', 'Alice Perera', 'alice@example.com', 'Test@1234'),
 ('admin', 'Nimal Silva', 'nimal@example.com', 'Test@1234'),
