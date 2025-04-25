@@ -54,6 +54,11 @@ Thumbs.db
 logs/
 *.log
 
+# Optional: DB/credentials
+db.properties
+*.sql
+*.db
+*.bak
 
 # Web application artifacts
 *.war
@@ -62,3 +67,7 @@ logs/
 # Tomcat / Jetty
 work/
 temp/
+
+
+
+.classpath
