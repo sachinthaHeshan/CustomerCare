@@ -23,10 +23,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-# Eclipse
-.settings/
-.project
-.classpath
 
 # IntelliJ
 .idea/
@@ -58,11 +54,6 @@ Thumbs.db
 logs/
 *.log
 
-# Optional: DB/credentials
-db.properties
-*.sql
-*.db
-*.bak
 
 # Web application artifacts
 *.war
