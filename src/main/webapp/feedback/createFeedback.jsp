@@ -8,7 +8,7 @@
 <body>
     <h2>Submit Your Feedback</h2>
     
-    <form action="../SubmitFeedback" method="post">
+   <form action="${pageContext.request.contextPath}/SubmitFeedback" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
