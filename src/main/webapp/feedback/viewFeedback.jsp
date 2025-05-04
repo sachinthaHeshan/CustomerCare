@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>All Feedback</title>
+    <title>All Feedbacks</title>
 </head>
 <body>
     <h2>All Feedback</h2>
