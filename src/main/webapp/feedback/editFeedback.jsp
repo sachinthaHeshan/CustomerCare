@@ -11,7 +11,7 @@
 </head>
 <body>
     <h2>Edit Your Feedback</h2>
-    <form action="../UpdateFeedback" method="post">
+    <form action="<%= request.getContextPath() %>/EditFeedback" method="post">
         <input type="hidden" name="id" value="<%= f.getId() %>" />
         Name: <input type="text" name="name" value="<%= f.getName() %>" required><br><br>
         Email: <input type="email" name="email" value="<%= f.getEmail() %>" required><br><br>

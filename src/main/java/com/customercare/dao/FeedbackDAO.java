@@ -34,12 +34,16 @@ public class FeedbackDAO {
 
     
     public List<Feedback> getAllFeedback() {
+    	System.out.println("Inside getAllFeedback()");
+
         List<Feedback> list = new ArrayList<>();
         String sql = "SELECT * FROM feedback ORDER BY id DESC";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("Executing: " + sql);
 
             while (rs.next()) {
                 Feedback f = new Feedback();
@@ -51,12 +55,16 @@ public class FeedbackDAO {
                 list.add(f);
             }
 
+            System.out.println("Feedback records fetched: " + list.size());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return list;
     }
+
+
     
     public Feedback getFeedbackById(int id) {
         Feedback feedback = null;

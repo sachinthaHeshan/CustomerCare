@@ -15,11 +15,25 @@ public class SubmitFeedbackServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String ratingStr = request.getParameter("rating");
+        String comments = request.getParameter("comments");
+
+        System.out.println("Inserting: " + name + ", " + email + ", " + ratingStr + ", " + comments);
+
+        int rating = 0;
+        try {
+            rating = Integer.parseInt(ratingStr);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid rating value: " + ratingStr);
+        }
+
         Feedback feedback = new Feedback();
-        feedback.setName(request.getParameter("name"));
-        feedback.setEmail(request.getParameter("email"));
-        feedback.setRating(Integer.parseInt(request.getParameter("rating")));
-        feedback.setComments(request.getParameter("comments"));
+        feedback.setName(name);
+        feedback.setEmail(email);
+        feedback.setRating(rating);
+        feedback.setComments(comments);
 
         FeedbackDAO dao = new FeedbackDAO();
         boolean isInserted = dao.insertFeedback(feedback);

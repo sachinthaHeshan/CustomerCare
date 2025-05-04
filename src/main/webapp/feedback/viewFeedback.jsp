@@ -4,6 +4,7 @@
 <%
     List<Feedback> feedbackList = (List<Feedback>) request.getAttribute("feedbackList");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +22,31 @@
             <th>Actions</th>
         </tr>
 
-        <c:forEach var="f" items="${feedbackList}">
+        <%
+    if (feedbackList != null && !feedbackList.isEmpty()) {
+        for (Feedback f : feedbackList) {
+%>
             <tr>
-                <td>${f.id}</td>
-                <td>${f.name}</td>
-                <td>${f.email}</td>
-                <td>${f.rating}</td>
-                <td>${f.comments}</td>
+                <td><%= f.getId() %></td>
+                <td><%= f.getName() %></td>
+                <td><%= f.getEmail() %></td>
+                <td><%= f.getRating() %></td>
+                <td><%= f.getComments() %></td>
                 <td>
-                    <a href="../EditFeedback?id=${f.id}">Edit</a> |
-                    <a href="../DeleteFeedback?id=${f.id}" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</a>
+                    <a href="<%= request.getContextPath() %>/EditFeedback?id=<%= f.getId() %>">Edit | </a>
+                    <a href="<%= request.getContextPath() %>/DeleteFeedback?id=<%= f.getId() %>" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</a>
+
                 </td>
             </tr>
-        </c:forEach>
+<%
+        }
+    } else {
+%>
+        <tr><td colspan="6">No feedback found.</td></tr>
+<%
+    }
+%>
+
 
     </table>
 </body>

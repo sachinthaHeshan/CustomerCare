@@ -15,9 +15,11 @@ public class ViewFeedbackServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	System.out.println("Inside serverlets()");
 
         FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> feedbackList = dao.getAllFeedback();
+		List<Feedback> feedbackList = dao.getAllFeedback();
 
         request.setAttribute("feedbackList", feedbackList);
         request.getRequestDispatcher("/feedback/viewFeedback.jsp").forward(request, response);

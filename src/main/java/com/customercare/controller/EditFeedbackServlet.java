@@ -12,6 +12,25 @@ import java.io.IOException;
 public class EditFeedbackServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    // Load feedback data into form (editFeedback.jsp)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        FeedbackDAO dao = new FeedbackDAO();
+        Feedback feedback = dao.getFeedbackById(id);
+
+        if (feedback != null) {
+            request.setAttribute("feedback", feedback);
+            request.getRequestDispatcher("/feedback/editFeedback.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("feedback/message.jsp?status=error&action=EditNotFound");
+        }
+    }
+
+    // Handle form submission to update feedback
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

@@ -14,7 +14,7 @@ public class DBUtil {
     public static Connection getConnection() throws SQLException {
         try {
             // Load the MySQL JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Failed to load MySQL driver", e);
         }

@@ -20,6 +20,6 @@
 <body>
     <h2><%= message %></h2>
     <br>
-    <a href="viewFeedback.jsp">Back to Feedback List</a>
+    <a href="../ViewFeedback">Back to Feedback List</a>
 </body>
 </html>
