@@ -15,6 +15,13 @@
 <html>
 <head>
     <title>All Feedbacks</title>
+    
+    <%-- <script>
+    window.addEventListener("unload", function () {
+        navigator.sendBeacon('<%= request.getContextPath() %>/Logout');
+    });
+	</script> --%>
+    
 </head>
 <body>
     <h2>All Feedbacks</h2>
@@ -37,7 +44,7 @@
         <input type="submit" value="Search" />
     </form>
 
-    <!-- Create Feedback Button -->
+    
     <form action="<%= request.getContextPath() %>/feedback/createFeedback.jsp" method="get">
         <input type="submit" value="Create New Feedback" />
     </form>
