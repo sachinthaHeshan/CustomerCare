@@ -26,18 +26,35 @@ public class SubmitFeedbackServlet extends HttpServlet {
 
         logger.info("SubmitFeedbackServlet - Submitting feedback: " + name + ", " + email + ", " + ratingStr + ", " + comments);
 
-        int rating = 0;
-        try {
-            rating = Integer.parseInt(ratingStr);
-        } catch (NumberFormatException e) {
-            logger.warning("Invalid rating value: " + ratingStr);
+        // Validation part
+        if (name == null || name.trim().length() < 3 ||
+            email == null || !email.contains("@") ||
+            ratingStr == null ||
+            comments == null || comments.trim().length() < 10) {
+
+            logger.warning("Validation failed - Invalid input");
+            response.sendRedirect("feedback/message.jsp?status=error&action=Validation");
+            return;
         }
 
+        int rating;
+        try {
+            rating = Integer.parseInt(ratingStr);
+            if (rating < 1 || rating > 5) {
+                throw new NumberFormatException("Rating out of range.");
+            }
+        } catch (NumberFormatException e) {
+            logger.warning("Invalid rating value: " + ratingStr);
+            response.sendRedirect("feedback/message.jsp?status=error&action=Validation");
+            return;
+        }
+
+       
         Feedback feedback = new Feedback();
-        feedback.setName(name);
-        feedback.setEmail(email);
+        feedback.setName(name.trim());
+        feedback.setEmail(email.trim());
         feedback.setRating(rating);
-        feedback.setComments(comments);
+        feedback.setComments(comments.trim());
 
         FeedbackDAO dao = new FeedbackDAO();
         boolean isInserted = dao.insertFeedback(feedback);

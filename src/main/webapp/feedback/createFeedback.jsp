@@ -4,13 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit Feedback</title>
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const comments = document.getElementById("comments").value.trim();
+
+            if (name.length < 3) {
+                alert("Name must be at least 3 characters long.");
+                return false;
+            }
+
+            if (comments.length < 10) {
+                alert("Comments must be at least 10 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <h2>Submit Your Feedback</h2>
     
-   <form action="${pageContext.request.contextPath}/SubmitFeedback" method="post">
+    <form action="${pageContext.request.contextPath}/SubmitFeedback" method="post" onsubmit="return validateForm();">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" required minlength="3"><br><br>
 
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
@@ -26,7 +44,7 @@
         </select><br><br>
 
         <label for="comments">Comments:</label><br>
-        <textarea id="comments" name="comments" rows="5" cols="30" required></textarea><br><br>
+        <textarea id="comments" name="comments" rows="5" cols="30" required minlength="10"></textarea><br><br>
 
         <input type="submit" value="Submit Feedback">
     </form>
