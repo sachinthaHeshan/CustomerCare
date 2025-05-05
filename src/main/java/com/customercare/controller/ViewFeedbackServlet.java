@@ -2,6 +2,7 @@ package com.customercare.controller;
 
 import com.customercare.dao.FeedbackDAO;
 import com.customercare.model.Feedback;
+import com.customercare.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +20,20 @@ public class ViewFeedbackServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        logger.info("ViewFeedbackServlet - Fetching all feedback entries");
-
         FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> feedbackList = dao.getAllFeedback();
+        HttpSession session = request.getSession(false);
+        User sessionUser = (session != null) ? (User) session.getAttribute("user") : null;
+
+        String filter = request.getParameter("filter");
+        List<Feedback> feedbackList;
+
+        if ("mine".equalsIgnoreCase(filter) && sessionUser != null) {
+            logger.info("ViewFeedbackServlet - Fetching feedback for user ID: " + sessionUser.getId());
+            feedbackList = dao.getFeedbackByUserId(sessionUser.getId());
+        } else {
+            logger.info("ViewFeedbackServlet - Fetching all feedback entries");
+            feedbackList = dao.getAllFeedback();
+        }
 
         logger.info("Fetched " + (feedbackList != null ? feedbackList.size() : 0) + " feedback entries");
 

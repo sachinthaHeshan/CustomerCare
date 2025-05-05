@@ -5,6 +5,10 @@
 <%
     List<Feedback> feedbackList = (List<Feedback>) request.getAttribute("feedbackList");
     User sessionUser = (User) session.getAttribute("user");
+    String filter = request.getParameter("filter");
+    if (filter == null) {
+        filter = "all";
+    }
 %>
 
 <!DOCTYPE html>
@@ -15,18 +19,36 @@
 <body>
     <h2>All Feedbacks</h2>
 
+    <!-- Filter Form -->
+    <form action="<%= request.getContextPath() %>/ViewFeedback" method="get">
+        <label>Filter:</label>
+        <select name="filter">
+            <option value="all" <%= "all".equals(filter) ? "selected" : "" %>>All Feedbacks</option>
+            <option value="mine" <%= "mine".equals(filter) ? "selected" : "" %>>My Feedbacks</option>
+        </select>
+        <input type="submit" value="Apply Filter">
+    </form>
+
+    <br>
+
     <!-- Search Bar -->
     <form action="${pageContext.request.contextPath}/SearchFeedback" method="get">
         <input type="text" name="query" placeholder="Search by name or comment..." required />
         <input type="submit" value="Search" />
     </form>
+
+    <!-- Create Feedback Button -->
+    <form action="<%= request.getContextPath() %>/feedback/createFeedback.jsp" method="get">
+        <input type="submit" value="Create New Feedback" />
+    </form>
+
     <br>
 
     <table border="1" cellpadding="8">
         <tr>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Name</th>
-            <th>Email</th>
+            <!-- <th>Email</th> -->
             <th>Rating</th>
             <th>Comments</th>
             <th>Actions</th>
@@ -37,9 +59,9 @@
                 for (Feedback f : feedbackList) {
         %>
             <tr>
-                <td><%= f.getId() %></td>
+                <%-- <td><%= f.getId() %></td> --%>
                 <td><%= f.getName() %></td>
-                <td><%= f.getEmail() %></td>
+                <%-- <td><%= f.getEmail() %></td> --%>
                 <td><%= f.getRating() %></td>
                 <td><%= f.getComments() %></td>
                 <td>
