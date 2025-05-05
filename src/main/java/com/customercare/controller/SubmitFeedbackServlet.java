@@ -2,6 +2,7 @@ package com.customercare.controller;
 
 import com.customercare.dao.FeedbackDAO;
 import com.customercare.model.Feedback;
+import com.customercare.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,19 +20,24 @@ public class SubmitFeedbackServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            logger.warning("Unauthenticated user tried to submit feedback.");
+            response.sendRedirect("login");
+            return;
+        }
+
+        String name = user.getName();
+        String email = user.getEmail(); 
         String ratingStr = request.getParameter("rating");
         String comments = request.getParameter("comments");
 
         logger.info("SubmitFeedbackServlet - Submitting feedback: " + name + ", " + email + ", " + ratingStr + ", " + comments);
 
-        // Validation part
-        if (name == null || name.trim().length() < 3 ||
-            email == null || !email.contains("@") ||
-            ratingStr == null ||
-            comments == null || comments.trim().length() < 10) {
-
+        // Simple validation
+        if (ratingStr == null || comments == null || comments.trim().length() < 10) {
             logger.warning("Validation failed - Invalid input");
             response.sendRedirect("feedback/message.jsp?status=error&action=Validation");
             return;
@@ -49,12 +55,12 @@ public class SubmitFeedbackServlet extends HttpServlet {
             return;
         }
 
-       
         Feedback feedback = new Feedback();
-        feedback.setName(name.trim());
-        feedback.setEmail(email.trim());
+        feedback.setName(name);
+        feedback.setEmail(email);
         feedback.setRating(rating);
         feedback.setComments(comments.trim());
+        feedback.setCreatedUserId(user.getId());
 
         FeedbackDAO dao = new FeedbackDAO();
         boolean isInserted = dao.insertFeedback(feedback);

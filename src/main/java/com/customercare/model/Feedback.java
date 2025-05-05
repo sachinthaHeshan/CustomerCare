@@ -6,6 +6,7 @@ public class Feedback {
     private String email;
     private int rating;
     private String comments;
+    private int createdUserId; // NEW FIELD
 
     // Getters and Setters
 
@@ -42,5 +43,12 @@ public class Feedback {
     }
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public int getCreatedUserId() {
+        return createdUserId;
+    }
+    public void setCreatedUserId(int createdUserId) {
+        this.createdUserId = createdUserId;
     }
 }

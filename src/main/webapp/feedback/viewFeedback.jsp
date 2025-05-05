@@ -1,8 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.customercare.model.Feedback" %>
+<%@ page import="com.customercare.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
     List<Feedback> feedbackList = (List<Feedback>) request.getAttribute("feedbackList");
+    User sessionUser = (User) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@
 
     <!-- Search Bar -->
     <form action="${pageContext.request.contextPath}/SearchFeedback" method="get">
-        <input type="text" name="query" placeholder="Search by name, email, or comment..." required />
+        <input type="text" name="query" placeholder="Search by name or comment..." required />
         <input type="submit" value="Search" />
     </form>
     <br>
@@ -41,8 +43,12 @@
                 <td><%= f.getRating() %></td>
                 <td><%= f.getComments() %></td>
                 <td>
-                    <a href="<%= request.getContextPath() %>/EditFeedback?id=<%= f.getId() %>">Edit</a> |
-                    <a href="<%= request.getContextPath() %>/DeleteFeedback?id=<%= f.getId() %>" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</a>
+                    <% if (sessionUser != null && f.getCreatedUserId() == sessionUser.getId()) { %>
+                        <a href="<%= request.getContextPath() %>/EditFeedback?id=<%= f.getId() %>">Edit</a> |
+                        <a href="<%= request.getContextPath() %>/DeleteFeedback?id=<%= f.getId() %>" onclick="return confirm('Are you sure you want to delete this feedback?');">Delete</a>
+                    <% } else { %>
+                        -
+                    <% } %>
                 </td>
             </tr>
         <%
