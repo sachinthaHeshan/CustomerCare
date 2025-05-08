@@ -11,9 +11,10 @@ import java.util.List;
 
 public class FeedbackDAO {
 
+    // insert function
     public boolean insertFeedback(Feedback feedback) {
         boolean success = false;
-        String sql = "INSERT INTO feedback (name, email, rating, comments) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO feedback (name, email, rating, comments, created_user_id) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -22,6 +23,7 @@ public class FeedbackDAO {
             stmt.setString(2, feedback.getEmail());
             stmt.setInt(3, feedback.getRating());
             stmt.setString(4, feedback.getComments());
+            stmt.setInt(5, feedback.getCreatedUserId());
 
             success = stmt.executeUpdate() > 0;
 
@@ -32,6 +34,7 @@ public class FeedbackDAO {
         return success;
     }
 
+    // get all feedbacks
     public List<Feedback> getAllFeedback() {
         List<Feedback> list = new ArrayList<>();
         String sql = "SELECT * FROM feedback ORDER BY id DESC";
@@ -47,6 +50,7 @@ public class FeedbackDAO {
                 f.setEmail(rs.getString("email"));
                 f.setRating(rs.getInt("rating"));
                 f.setComments(rs.getString("comments"));
+                f.setCreatedUserId(rs.getInt("created_user_id"));
                 list.add(f);
             }
 
@@ -57,6 +61,7 @@ public class FeedbackDAO {
         return list;
     }
 
+    // get ID function
     public Feedback getFeedbackById(int id) {
         Feedback feedback = null;
         String sql = "SELECT * FROM feedback WHERE id = ?";
@@ -74,6 +79,7 @@ public class FeedbackDAO {
                 feedback.setEmail(rs.getString("email"));
                 feedback.setRating(rs.getInt("rating"));
                 feedback.setComments(rs.getString("comments"));
+                feedback.setCreatedUserId(rs.getInt("created_user_id"));
             }
 
         } catch (Exception e) {
@@ -83,6 +89,7 @@ public class FeedbackDAO {
         return feedback;
     }
 
+    // update function
     public boolean updateFeedback(Feedback feedback) {
         boolean success = false;
         String sql = "UPDATE feedback SET name = ?, email = ?, rating = ?, comments = ? WHERE id = ?";
@@ -105,6 +112,7 @@ public class FeedbackDAO {
         return success;
     }
 
+    // delete function
     public boolean deleteFeedback(int id) {
         boolean success = false;
         String sql = "DELETE FROM feedback WHERE id = ?";
@@ -122,6 +130,7 @@ public class FeedbackDAO {
         return success;
     }
 
+    // search function
     public List<Feedback> searchFeedback(String keyword) {
         List<Feedback> list = new ArrayList<>();
         String sql = "SELECT * FROM feedback WHERE name LIKE ? OR email LIKE ? OR comments LIKE ? ORDER BY id DESC";
@@ -143,6 +152,36 @@ public class FeedbackDAO {
                 f.setEmail(rs.getString("email"));
                 f.setRating(rs.getInt("rating"));
                 f.setComments(rs.getString("comments"));
+                f.setCreatedUserId(rs.getInt("created_user_id"));
+                list.add(f);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    // get feedback using ID
+    public List<Feedback> getFeedbackByUserId(int userId) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = "SELECT * FROM feedback WHERE created_user_id = ? ORDER BY id DESC";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Feedback f = new Feedback();
+                f.setId(rs.getInt("id"));
+                f.setName(rs.getString("name"));
+                f.setEmail(rs.getString("email"));
+                f.setRating(rs.getInt("rating"));
+                f.setComments(rs.getString("comments"));
+                f.setCreatedUserId(rs.getInt("created_user_id"));
                 list.add(f);
             }
 
