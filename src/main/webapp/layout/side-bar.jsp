@@ -13,7 +13,7 @@
         <a href="#"><i class="fas fa-plus">&nbsp;&nbsp;</i>New Ticket</a>
       </li>
       <li>
-        <a href="#" class="active"
+        <a href="ViewFeedback" class="active"
           ><i class="fas fa-commenting">&nbsp;&nbsp;</i>Feedback & Ratings</a
         >
       </li>

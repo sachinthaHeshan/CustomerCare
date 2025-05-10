@@ -1,102 +1,102 @@
-body {
+body.index-page {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.container {
+.index-page .container {
   width: 95%;
   margin: 0 auto;
 }
 
-header {
+.index-page header {
   background-color: #f8f8f8;
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
 }
 
-header .container {
+.index-page header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header h1 {
+.index-page header h1 {
   display: inline-block;
   font-size: 24px;
   color: #333;
 }
 
-header h1 span {
+.index-page header h1 span {
   color: #007bff;
 }
 
-nav ul {
+.index-page nav ul {
   list-style: none;
   float: right;
 }
 
-nav ul li {
+.index-page nav ul li {
   display: inline;
   margin-left: 20px;
 }
 
-nav ul li a {
+.index-page nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
 }
 
-nav ul li a.login {
+.index-page nav ul li a.login {
   color: #007bff;
 }
 
-nav ul li a.register {
+.index-page nav ul li a.register {
   background-color: #007bff;
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
-.hero {
+.index-page .hero {
   text-align: center;
   padding: 100px 0;
   background-color: #f0f0f0;
 }
 
-.hero h2 {
+.index-page .hero h2 {
   font-size: 36px;
   color: #333;
 }
 
-.hero h2 span {
+.index-page .hero h2 span {
   color: #007bff;
 }
 
-.hero p {
+.index-page .hero p {
   font-size: 18px;
   color: #666;
 }
 
-.image {
+.index-page .image {
   text-align: center;
   padding: 50px 0;
 }
 
-.image img {
+.index-page .image img {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
-footer {
+.index-page footer {
   background-color: #f8f8f8;
   padding: 20px 0;
   text-align: center;
   border-top: 1px solid #ddd;
 }
 
-footer p {
+.index-page footer p {
   color: #666;
 }

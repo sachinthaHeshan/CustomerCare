@@ -9,12 +9,7 @@
       <div class="user-role">${user.type}</div>
     </div>
     <div class="user-icon">
-      <img
-        src="asserts/images/user-avatar.png"
-        alt="user-avatar"
-        width="40px"
-        height="40px"
-      />
+      <i class="fas fa-user"></i>
     </div>
   </div>
 </header>
