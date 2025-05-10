@@ -7,26 +7,26 @@
   <nav>
     <ul>
       <li>
-        <a href="#"><i class="fas fa-upload"></i> Upload</a>
+        <a href="#"><i class="fas fa-ticket">&nbsp;&nbsp;</i>Tickets</a>
       </li>
       <li>
-        <a href="#"><i class="fas fa-plus"></i> Create</a>
+        <a href="#"><i class="fas fa-plus">&nbsp;&nbsp;</i>New Ticket</a>
       </li>
       <li>
-      
-        <a href="#" class="active"><i class="fas fa-clock"></i> Recent</a>
+        <a href="#" class="active"
+          ><i class="fas fa-commenting">&nbsp;&nbsp;</i>Feedback & Ratings</a
+        >
       </li>
       <li>
-        <a href="#"><i class="fas fa-folder"></i> Files</a>
+        <a href="#"><i class="fas fa-briefcase">&nbsp;&nbsp;</i>Inquiries</a>
       </li>
       <li>
-        <a href="#"><i class="fas fa-image"></i> Photos</a>
+        <a href="#"
+          ><i class="fas fa-external-link-square">&nbsp;&nbsp;</i>Add Inquiry</a
+        >
       </li>
       <li>
-        <a href="#"><i class="fas fa-share-alt"></i> Shared</a>
-      </li>
-      <li>
-        <a href="#"><i class="fas fa-trash"></i> Trash</a>
+        <a href="#"><i class="fas fa-question">&nbsp;&nbsp;</i>FAQ</a>
       </li>
     </ul>
   </nav>

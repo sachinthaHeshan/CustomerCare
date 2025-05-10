@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-<body>
+<body> 
     <div class="login-container">
         <h2>Login</h2>
         <% if (request.getParameter("error") != null) { %>
@@ -42,6 +42,6 @@
                 <input type="submit" class="btn btn-block" value="Login">
             </div>
         </form>
-    </div>
+    </div> 
 </body>
 </html>
