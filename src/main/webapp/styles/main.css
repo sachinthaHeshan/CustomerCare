@@ -1,9 +1,15 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .sidebar {
-  width: 200px;
+  width: 300px;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   height: 100vh;
+  box-sizing: border-box;
 }
 
 .logo h1 {
@@ -57,13 +63,16 @@ nav ul li a.active {
 header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   padding: 0 20px;
   background-color: white;
   height: 60px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px 10px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .main-container {
@@ -77,12 +86,14 @@ header {
   display: flex;
   flex: auto;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: 0 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 20px);
+  overflow-y: auto;
 }
 
 .user-actions {
@@ -137,4 +148,21 @@ header {
   color: #999;
   text-transform: uppercase;
   margin-right: 10px;
+}
+
+/* Logout button styles */
+.logout-item {
+  margin-top: 30px;
+}
+
+.logout-link {
+  background-color: #f8f9fa;
+  color: #dc3545 !important;
+  border: 1px solid #dc3545;
+  transition: all 0.3s ease;
+}
+
+.logout-link:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
 }

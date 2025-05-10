@@ -8,10 +8,9 @@ pageEncoding="UTF-8"%>
     <title>PulseCare</title>
     <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="styles/main.css" />
-    <!-- Link to your CSS file -->
   </head>
   <body>
-    <header>
+    <header class="header">
       <div class="container">
         <h1>Pulse<span>Care</span></h1>
 
@@ -44,7 +43,6 @@ pageEncoding="UTF-8"%>
       <section class="image">
         <div class="container">
           <img src="asserts/images/bg.jpg" alt="Customer Support" />
-          <!-- Image source -->
         </div>
       </section>
     </main>
