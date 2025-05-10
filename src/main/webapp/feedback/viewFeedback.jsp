@@ -15,13 +15,6 @@
 <html>
 <head>
     <title>All Feedbacks</title>
-    
-    <%-- <script>
-    window.addEventListener("unload", function () {
-        navigator.sendBeacon('<%= request.getContextPath() %>/Logout');
-    });
-	</script> --%>
-    
 </head>
 <body>
     <h2>All Feedbacks</h2>

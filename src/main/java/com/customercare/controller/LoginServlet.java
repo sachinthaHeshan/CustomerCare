@@ -1,6 +1,7 @@
 package com.customercare.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -33,10 +34,15 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			logger.info("Login successful for: " + email);
-			response.sendRedirect("ViewFeedback"); // or dashboard.jsp if you want
+			response.sendRedirect("dashboard");
 		} else {
 			logger.warning("Login failed for: " + email);
-			response.sendRedirect("login.jsp?error=invalid");
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			out.println("<script type='text/javascript'>");
+			out.println("alert('Your username or password is incorrect');");
+			out.println("location='login'");
+			out.println("</script>");
 		}
 	}
 }
