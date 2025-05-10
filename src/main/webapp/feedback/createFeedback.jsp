@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit Feedback</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/feedback.css">
     <script>
         function validateForm() {
             const name = document.getElementById("name").value.trim();
@@ -25,29 +26,46 @@
     </script>
 </head>
 <body>
-    <h2>Submit Your Feedback</h2>
-    
-    <form action="${pageContext.request.contextPath}/SubmitFeedback" method="post" onsubmit="return validateForm();">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="<%= session.getAttribute("user") != null ? ((User)session.getAttribute("user")).getName() : "" %>" required minlength="3" readonly><br><br>
+    <div class="container">
+        <h2>Submit Your Feedback</h2>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<%= session.getAttribute("user") != null ? ((User)session.getAttribute("user")).getEmail() : "" %>" required readonly><br><br>
+        <form class="feedback-form" action="${pageContext.request.contextPath}/SubmitFeedback" method="post" onsubmit="return validateForm();">
 
-        <label for="rating">Rating:</label><br>
-        <select id="rating" name="rating" required>
-            <option value="">--Select--</option>
-            <option value="1">1 - Very Poor</option>
-            <option value="2">2 - Poor</option>
-            <option value="3">3 - Average</option>
-            <option value="4">4 - Good</option>
-            <option value="5">5 - Excellent</option>
-        </select><br><br>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input class="form-control" type="text" id="name" name="name"
+                    value="<%= session.getAttribute("user") != null ? ((User)session.getAttribute("user")).getName() : "" %>"
+                    required minlength="3" readonly>
+            </div>
 
-        <label for="comments">Comments:</label><br>
-        <textarea id="comments" name="comments" rows="5" cols="30" required minlength="10"></textarea><br><br>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email"
+                    value="<%= session.getAttribute("user") != null ? ((User)session.getAttribute("user")).getEmail() : "" %>"
+                    required readonly>
+            </div>
 
-        <input type="submit" value="Submit Feedback">
-    </form>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <select class="form-control rating-select" id="rating" name="rating" required>
+                    <option value="">--Select--</option>
+                    <option value="1">1 - Very Poor</option>
+                    <option value="2">2 - Poor</option>
+                    <option value="3">3 - Average</option>
+                    <option value="4">4 - Good</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea class="form-control" id="comments" name="comments" rows="5" required minlength="10"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-block">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

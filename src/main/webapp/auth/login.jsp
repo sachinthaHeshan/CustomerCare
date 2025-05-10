@@ -1,62 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Login Page</title>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f2f2f2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
-.login-container {
-	background-color: white;
-	padding: 30px;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input[type=email], input[type=password] {
-	width: 100%;
-	padding: 10px;
-	margin: 8px 0 16px 0;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-input[type=submit] {
-	width: 100%;
-	padding: 10px;
-	background-color: #4285f4;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-input[type=submit]:hover {
-	background-color: #357ae8;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/feedback.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--bg-white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-container h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-<body>
-	<div class="login-container">
-		<h2>Login</h2>
-		<form action="loginServlet" method="post">
-			<label for="email">Email:</label> <input type="email" id="email"
-				name="email" required> <label for="password">Password:</label>
-			<input type="password" id="password" name="password" required>
-
-			<input type="submit" value="Login">
-		</form>
-	</div>
-
+<body> 
+    <div class="login-container">
+        <h2>Login</h2>
+        <% if (request.getParameter("error") != null) { %>
+            <div class="alert alert-error">Invalid email or password</div>
+        <% } %>
+        <form action="${pageContext.request.contextPath}/loginServlet" method="post">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-actions">
+                <input type="submit" class="btn btn-block" value="Login">
+            </div>
+        </form>
+    </div> 
 </body>
 </html>
