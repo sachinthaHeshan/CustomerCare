@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			logger.info("Login successful for: " + email);
-			response.sendRedirect("ViewFeedback"); // or dashboard.jsp if you want
+			response.sendRedirect("dashboard");
 		} else {
 			logger.warning("Login failed for: " + email);
 			response.sendRedirect("login.jsp?error=invalid");
