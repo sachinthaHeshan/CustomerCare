@@ -24,6 +24,17 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String action = request.getParameter("action");
+		
+		if ("register".equals(action)) {
+			handleRegistration(request, response);
+		} else {
+			handleLogin(request, response);
+		}
+	}
+	
+	private void handleLogin(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -36,12 +47,46 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("dashboard");
 		} else {
 			logger.warning("Login failed for: " + email);
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			out.println("<script type='text/javascript'>");
-			out.println("alert('Your username or password is incorrect');");
-			out.println("location='login'");
-			out.println("</script>");
+			response.sendRedirect("auth/login.jsp?error=true");
+		}
+	}
+	
+	private void handleRegistration(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String confirmPassword = request.getParameter("confirmPassword");
+		
+		// Validate input
+		if (name == null || name.trim().isEmpty() || 
+			email == null || email.trim().isEmpty() || 
+			password == null || password.trim().isEmpty()) {
+			response.sendRedirect("auth/register.jsp?error=All+fields+are+required");
+			return;
+		}
+		
+		// Validate password match
+		if (!password.equals(confirmPassword)) {
+			response.sendRedirect("auth/register.jsp?error=Passwords+do+not+match");
+			return;
+		}
+		
+		// Check if email already exists
+		if (userDAO.isEmailExists(email)) {
+			response.sendRedirect("auth/register.jsp?error=Email+already+exists");
+			return;
+		}
+		
+		// Register the user
+		boolean success = userDAO.register(name, email, password);
+		
+		if (success) {
+			logger.info("Registration successful for: " + email);
+			response.sendRedirect("auth/login.jsp");
+		} else {
+			logger.warning("Registration failed for: " + email);
+			response.sendRedirect("auth/register.jsp?error=Registration+failed.+Please+try+again.");
 		}
 	}
 }

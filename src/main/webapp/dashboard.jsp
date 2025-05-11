@@ -18,7 +18,16 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
       <%@ include file="layout/side-bar.jsp"%>
       <div class="main-content">
         <%@ include file="layout/header.jsp"%>
-        <h2>Welcome, ${user.name}!</h2>
+
+        <section class="welcome-section">
+          <div class="container">
+            <h2>Welcome, ${user.name}!</h2>
+            <p>
+              Your support dashboard gives you quick access to all customer care
+              functions
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   </body>

@@ -14,11 +14,32 @@ public class DBUtil {
     public static Connection getConnection() throws SQLException {
         try {
             // Load the MySQL JDBC driver
-        	Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Failed to load MySQL driver", e);
+            System.out.println("Attempting to get database connection...");
+            System.out.println("JDBC URL: " + URL);
+            System.out.println("JDBC User: " + USER);
+            
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                System.out.println("Driver loaded successfully: com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                // Try the newer driver name if the old one doesn't work
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    System.out.println("Driver loaded successfully: com.mysql.cj.jdbc.Driver");
+                } catch (ClassNotFoundException e2) {
+                    System.err.println("Failed to load both MySQL drivers. Trying to connect anyway.");
+                    e2.printStackTrace();
+                }
+            }
+            
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Database connection established successfully");
+            return conn;
+        } catch (SQLException e) {
+            System.err.println("Error connecting to the database: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
         }
-        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
     // Close connection
@@ -26,7 +47,9 @@ public class DBUtil {
         if (conn != null) {
             try {
                 conn.close();
-            } catch (SQLException ignored) {
+                System.out.println("Database connection closed");
+            } catch (SQLException e) {
+                System.err.println("Error closing connection: " + e.getMessage());
             }
         }
     }

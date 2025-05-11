@@ -40,7 +40,7 @@
         >
       </li>
       <li>
-        <a href="#" <%= path.contains("/faq") ? "class=\"active\"" : "" %>
+        <a href="faq" <%= path.contains("/faq") ? "class=\"active\"" : "" %>
           ><i class="fas fa-question">&nbsp;&nbsp;</i>FAQ ${user != null ?
           user.getType() : ""}</a
         >

@@ -1,6 +1,8 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f8fa;
 }
 
 .sidebar {
@@ -10,6 +12,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   height: 100vh;
   box-sizing: border-box;
+  border-right: 1px solid #eaeef2;
 }
 
 .logo h1 {
@@ -21,12 +24,12 @@ body {
 }
 
 .pulse-text {
-  color: #007bff;
+  color: #4361ee;
   font-weight: 700;
 }
 
 .care-text {
-  color: #333;
+  color: #3a0ca3;
   font-weight: 700;
 }
 
@@ -38,6 +41,7 @@ body {
 nav ul {
   list-style: none;
   padding: 0;
+  margin-top: 30px;
 }
 
 nav ul li {
@@ -46,18 +50,18 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #666;
+  color: #4a5568;
   display: block;
   padding: 12px;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: all 0.3s;
   font-weight: 500;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  background-color: #f0f9ff;
-  color: #03a9f4;
+  background-color: #eef2ff;
+  color: #4361ee;
 }
 
 header {
@@ -68,7 +72,7 @@ header {
   padding: 0 20px;
   background-color: white;
   height: 60px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border-radius: 10px 10px 0 0;
   position: sticky;
   top: 0;
@@ -90,8 +94,8 @@ header {
   align-items: center;
   padding: 0 20px;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   height: calc(100vh - 20px);
   overflow-y: auto;
 }
@@ -103,7 +107,7 @@ header {
 }
 
 .user-actions button {
-  background-color: #03a9f4;
+  background-color: #4361ee;
   color: #fff;
   border: none;
   padding: 8px 20px;
@@ -114,7 +118,7 @@ header {
 }
 
 .user-actions button:hover {
-  background-color: #0288d1;
+  background-color: #3a0ca3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,9 +131,10 @@ header {
   padding: 5px;
   width: 45px;
   height: 45px;
-  background-color: #eee;
+  background-color: #eef2ff;
   border-radius: 50%;
   overflow: hidden;
+  border: 2px solid #4361ee;
 }
 
 .user-info {
@@ -141,11 +146,12 @@ header {
 .user-name {
   font-size: 14px;
   font-weight: 500;
+  color: #2d3748;
 }
 
 .user-role {
   font-size: 12px;
-  color: #999;
+  color: #718096;
   text-transform: uppercase;
   margin-right: 10px;
 }
@@ -157,12 +163,60 @@ header {
 
 .logout-link {
   background-color: #f8f9fa;
-  color: #dc3545 !important;
-  border: 1px solid #dc3545;
+  color: #e63946 !important;
+  border: 1px solid #e63946;
   transition: all 0.3s ease;
 }
 
 .logout-link:hover {
-  background-color: #dc3545 !important;
+  background-color: #e63946 !important;
   color: white !important;
+}
+
+/* Form elements styling */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+input[type="submit"],
+button {
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #3a0ca3;
+}
+
+a {
+  color: #4361ee;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

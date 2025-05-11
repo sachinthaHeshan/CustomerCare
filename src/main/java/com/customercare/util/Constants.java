@@ -1,4 +1,4 @@
-package com.ticketsystem.util;
+package com.customercare.util;
 
 public class Constants {
     public static final String ATTR_TICKET_LIST = "ticketList";
