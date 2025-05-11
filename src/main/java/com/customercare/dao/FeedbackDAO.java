@@ -35,7 +35,9 @@ public class FeedbackDAO {
     // get all feedbacks
     public List<Feedback> getAllFeedback() {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT * FROM feedback ORDER BY id DESC";
+        String sql = "SELECT f.*, u.name AS user_name FROM feedback f " +
+                     "JOIN user u ON f.created_user_id = u.id " +
+                     "ORDER BY f.id DESC";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -47,6 +49,7 @@ public class FeedbackDAO {
                 f.setRating(rs.getInt("rating"));
                 f.setComments(rs.getString("comments"));
                 f.setCreatedUserId(rs.getInt("created_user_id"));
+                f.setUserName(rs.getString("user_name"));
                 list.add(f);
             }
 
@@ -60,7 +63,9 @@ public class FeedbackDAO {
     // get ID function
     public Feedback getFeedbackById(int id) {
         Feedback feedback = null;
-        String sql = "SELECT * FROM feedback WHERE id = ?";
+        String sql = "SELECT f.*, u.name AS user_name FROM feedback f " +
+                     "JOIN user u ON f.created_user_id = u.id " +
+                     "WHERE f.id = ?";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -74,6 +79,7 @@ public class FeedbackDAO {
                 feedback.setRating(rs.getInt("rating"));
                 feedback.setComments(rs.getString("comments"));
                 feedback.setCreatedUserId(rs.getInt("created_user_id"));
+                feedback.setUserName(rs.getString("user_name"));
             }
 
         } catch (Exception e) {
@@ -125,7 +131,9 @@ public class FeedbackDAO {
     // search function
     public List<Feedback> searchFeedback(String keyword) {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT * FROM feedback WHERE comments LIKE ? ORDER BY id DESC";
+        String sql = "SELECT f.*, u.name AS user_name FROM feedback f " +
+                     "JOIN user u ON f.created_user_id = u.id " +
+                     "WHERE f.comments LIKE ? ORDER BY f.id DESC";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -141,6 +149,7 @@ public class FeedbackDAO {
                 f.setRating(rs.getInt("rating"));
                 f.setComments(rs.getString("comments"));
                 f.setCreatedUserId(rs.getInt("created_user_id"));
+                f.setUserName(rs.getString("user_name"));
                 list.add(f);
             }
 
@@ -154,7 +163,9 @@ public class FeedbackDAO {
     // get feedback using ID
     public List<Feedback> getFeedbackByUserId(int userId) {
         List<Feedback> list = new ArrayList<>();
-        String sql = "SELECT * FROM feedback WHERE created_user_id = ? ORDER BY id DESC";
+        String sql = "SELECT f.*, u.name AS user_name FROM feedback f " +
+                     "JOIN user u ON f.created_user_id = u.id " +
+                     "WHERE f.created_user_id = ? ORDER BY f.id DESC";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -168,6 +179,7 @@ public class FeedbackDAO {
                 f.setRating(rs.getInt("rating"));
                 f.setComments(rs.getString("comments"));
                 f.setCreatedUserId(rs.getInt("created_user_id"));
+                f.setUserName(rs.getString("user_name"));
                 list.add(f);
             }
 

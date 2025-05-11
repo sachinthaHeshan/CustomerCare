@@ -5,6 +5,7 @@ public class Feedback {
     private int rating;
     private String comments;
     private int createdUserId;
+    private String userName;
 
     // Getters and Setters
 
@@ -34,5 +35,12 @@ public class Feedback {
     }
     public void setCreatedUserId(int createdUserId) {
         this.createdUserId = createdUserId;
+    }
+    
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

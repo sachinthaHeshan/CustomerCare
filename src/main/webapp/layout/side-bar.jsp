@@ -1,4 +1,4 @@
-<%@ page import="com.customercare.model.User"%>
+<%@ page import="com.customercare.model.User"%> 
 <%
   String currentURI = request.getRequestURI();
   String contextPath = request.getContextPath();
@@ -17,7 +17,6 @@
           ><i class="fas fa-ticket">&nbsp;&nbsp;</i>Dashboard</a
         >
       </li>
-
       <% if ("customer".equals(user.getType())) { %>
       <li>
         <a href="${pageContext.request.contextPath}/TicketServlet?action=LIST" <%= path.contains("/list-tickets.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-ticket">&nbsp;&nbsp;</i>My Tickets</a>

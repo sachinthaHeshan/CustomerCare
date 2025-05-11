@@ -110,7 +110,7 @@ if (filter == null) {
 						<form action="<%=request.getContextPath()%>/ViewFeedback"
 							method="get" class="filter-form">
 							<select class="form-control" id="filter" name="filter"
-								onchange="this.form.submit()">
+								onchange="this.form.submit()" 	style="margin: 0;">
 								<option value="all" <%="all".equals(filter) ? "selected" : ""%>>All
 									Feedbacks</option>
 								<option value="mine"
@@ -125,6 +125,7 @@ if (filter == null) {
 						<form action="${pageContext.request.contextPath}/SearchFeedback"
 							method="get" style="display: flex; gap: 10px;">
 							<input type="text" class="form-control" name="query"
+							style="margin: 0;"
 								placeholder="Search feedback..." required />
 							<button type="submit" class="btn">Search</button>
 						</form>
@@ -137,6 +138,7 @@ if (filter == null) {
 				<table class="feedback-table">
 					<thead>
 						<tr>
+							<th>User</th>
 							<th>Rating</th>
 							<th>Comments</th>
 							<th>Actions</th>
@@ -148,6 +150,7 @@ if (filter == null) {
 							for (Feedback f : feedbackList) {
 						%>
 						<tr>
+							<td><%=f.getUserName()%></td>
 							<td>
 								<div class="rating-stars">
 									<%
@@ -182,7 +185,7 @@ if (filter == null) {
 						} else {
 						%>
 						<tr>
-							<td colspan="3" class="no-feedback">No feedback found.</td>
+							<td colspan="4" class="no-feedback">No feedback found.</td>
 						</tr>
 						<%
 						}
