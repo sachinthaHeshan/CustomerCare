@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+/* Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
+  padding: 40px;
+}
+
+/* Main Form Container */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ddd;
+  border-radius: 8px;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 30px;
+}
+
+/* Form Labels */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input and Textarea Fields */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Textarea Resize */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Dropdown (select) Styling */
+select {
+  appearance: none; /* Removes default dropdown styling */
+  background-color: #fff;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"%3E%3Cpath fill="none" d="M5 7l5 5 5-5z"%3E%3C/path%3E%3C/svg%3E');
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
+
+/* Submit Button */
+input[type="submit"] {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Edit FAQ Form Styles */
+.edit-faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.edit-faq-title {
+  color: #333;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #03a9f4;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.edit-faq-form {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.edit-faq-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+.edit-faq-form input[type="text"],
+.edit-faq-form input[type="email"],
+.edit-faq-form select,
+.edit-faq-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+.edit-faq-form input[type="text"]:focus,
+.edit-faq-form input[type="email"]:focus,
+.edit-faq-form select:focus,
+.edit-faq-form textarea:focus {
+  outline: none;
+  border-color: #03a9f4;
+  box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.2);
+}
+
+.edit-faq-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.edit-faq-form select {
+  background-color: white;
+}
+
+.edit-faq-form .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.edit-faq-form .btn-update {
+  margin-right: auto;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  padding: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  width: 90px;
+  height: 40px;
+  text-align: center;
+}
+
+.edit-faq-form .btn-update:hover {
+  background-color: #0088ee;
+}
+
+.edit-faq-form .btn-cancel {
+  margin-left: auto;
+  background-color: white;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s;
+  height: 40px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-faq-form .btn-cancel:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .edit-faq-form .btn-container {
+    flex-direction: column;
+  }
+
+  .edit-faq-form .btn-update,
+  .edit-faq-form .btn-cancel {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,218 @@
+.faq-item {
+  border: 1px solid #eee;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.faq-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: #03a9f4;
+  opacity: 0.7;
+}
+
+.customer-info {
+  margin-bottom: 12px;
+  color: #666;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.customer-info strong {
+  font-weight: 600;
+  color: #333;
+  margin-right: 5px;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  padding-left: 10px;
+  border-left: 3px solid #03a9f4;
+}
+
+.category {
+  display: inline-block;
+  background-color: #f0f9ff;
+  padding: 5px 12px;
+  border-radius: 30px;
+  color: #03a9f4;
+  font-size: 12px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.answer {
+  background-color: #fafafa;
+  padding: 18px;
+  border-radius: 8px;
+  border-left: 4px solid #03a9f4;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.no-answer {
+  color: #999;
+  font-style: italic;
+  background-color: #f8f9fa;
+  border-left-color: #ddd;
+}
+
+.actions {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.faq-actions {
+  margin-top: 15px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.faq-actions a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.edit-btn {
+  background-color: #03a9f4;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #fff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.btn-new {
+  background-color: #03a9f4;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(3, 169, 244, 0.3);
+  max-width: fit-content;
+}
+
+.btn-new:hover {
+  background-color: #0288d1;
+  box-shadow: 0 4px 8px rgba(3, 169, 244, 0.4);
+  transform: translateY(-2px);
+}
+
+.edit-btn:hover {
+  background-color: #0288d1;
+  box-shadow: 0 2px 5px rgba(2, 136, 209, 0.3);
+}
+
+.delete-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state p {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: 16px;
+}
+
+.debug-info {
+  font-size: 12px;
+  color: #999;
+  background-color: #f0f0f0;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.container {
+  padding: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #03a9f4;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .faq-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .btn-new {
+    width: 100%;
+    justify-content: center;
+    max-width: none;
+  }
+}

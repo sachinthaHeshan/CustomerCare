@@ -29,17 +29,15 @@ public class SubmitFeedbackServlet extends HttpServlet {
             return;
         }
 
-        String name = user.getName();
-        String email = user.getEmail(); 
         String ratingStr = request.getParameter("rating");
         String comments = request.getParameter("comments");
 
-        logger.info("SubmitFeedbackServlet - Submitting feedback: " + name + ", " + email + ", " + ratingStr + ", " + comments);
+        logger.info("SubmitFeedbackServlet - Submitting feedback: user ID: " + user.getId() + ", rating: " + ratingStr + ", comments: " + comments);
 
         // Simple validation
         if (ratingStr == null || comments == null || comments.trim().length() < 10) {
             logger.warning("Validation failed - Invalid input");
-            response.sendRedirect("feedback/message.jsp?status=error&action=Validation");
+            response.sendRedirect("feedbackMessage?status=error&action=Validation");
             return;
         }
 
@@ -51,13 +49,11 @@ public class SubmitFeedbackServlet extends HttpServlet {
             }
         } catch (NumberFormatException e) {
             logger.warning("Invalid rating value: " + ratingStr);
-            response.sendRedirect("feedback/message.jsp?status=error&action=Validation");
+            response.sendRedirect("feedbackMessage?status=error&action=Validation");
             return;
         }
 
         Feedback feedback = new Feedback();
-        feedback.setName(name);
-        feedback.setEmail(email);
         feedback.setRating(rating);
         feedback.setComments(comments.trim());
         feedback.setCreatedUserId(user.getId());
@@ -66,11 +62,11 @@ public class SubmitFeedbackServlet extends HttpServlet {
         boolean isInserted = dao.insertFeedback(feedback);
 
         if (isInserted) {
-            logger.info("Feedback successfully inserted for: " + email);
-            response.sendRedirect("feedback/message.jsp?status=success&action=Insert");
+            logger.info("Feedback successfully inserted for user ID: " + user.getId());
+            response.sendRedirect("feedbackMessage?status=success&action=Insert");
         } else {
-            logger.warning("Failed to insert feedback for: " + email);
-            response.sendRedirect("feedback/message.jsp?status=error&action=Insert");
+            logger.warning("Failed to insert feedback for user ID: " + user.getId());
+            response.sendRedirect("feedbackMessage?status=error&action=Insert");
         }
     }
 }
