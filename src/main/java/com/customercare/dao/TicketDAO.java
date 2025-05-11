@@ -36,7 +36,12 @@ public class TicketDAO {
         try (Connection conn = DBUtil.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM tickets")) {
+            
+            System.out.println("Database connection established successfully");
+            int count = 0;
+            
             while (rs.next()) {
+                count++;
                 Ticket t = new Ticket();
                 t.setId(rs.getInt("id"));
                 t.setCustomerName(rs.getString("customer_name"));
@@ -47,7 +52,11 @@ public class TicketDAO {
                 t.setEmail(rs.getString("email"));
                 list.add(t);
             }
+            
+            System.out.println("Retrieved " + count + " tickets from database");
+            
         } catch (Exception e) {
+            System.err.println("Error in getAllTickets(): " + e.getMessage());
             e.printStackTrace();
         }
         return list;

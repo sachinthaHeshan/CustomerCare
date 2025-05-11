@@ -57,5 +57,28 @@
 		<url-pattern>/feedbackMessage</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>add-ticket</servlet-name>
+		<jsp-file>/tickets/add-ticket.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>add-ticket</servlet-name>
+		<url-pattern>/add-ticket</url-pattern>
+	</servlet-mapping>
+	
+			<servlet>
+		<servlet-name>list-ticket</servlet-name>
+		<jsp-file>/tickets/list-tickets.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>list-ticket</servlet-name>
+		<url-pattern>/list-ticket</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
 	
 </web-app>

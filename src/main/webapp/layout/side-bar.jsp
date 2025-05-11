@@ -20,7 +20,7 @@
 
       <% if ("customer".equals(user.getType())) { %>
       <li>
-        <a href="${pageContext.request.contextPath}/list-ticket" <%= path.contains("/list-tickets.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-ticket">&nbsp;&nbsp;</i>My Tickets</a>
+        <a href="${pageContext.request.contextPath}/TicketServlet?action=LIST" <%= path.contains("/list-tickets.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-ticket">&nbsp;&nbsp;</i>My Tickets</a>
       </li>
       <li>
         <a href="${pageContext.request.contextPath}/add-ticket" <%= path.contains("/add-ticket.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-plus">&nbsp;&nbsp;</i>New Ticket</a>
