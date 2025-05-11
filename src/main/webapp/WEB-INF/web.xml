@@ -37,5 +37,25 @@
     	<url-pattern>/loginServlet</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>createFeedback</servlet-name>
+		<jsp-file>/feedback/createFeedback.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>createFeedback</servlet-name>
+		<url-pattern>/createFeedback</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>feedbackMessage</servlet-name>
+		<jsp-file>/feedback/message.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>feedbackMessage</servlet-name>
+		<url-pattern>/feedbackMessage</url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>

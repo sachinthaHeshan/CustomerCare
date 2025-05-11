@@ -67,10 +67,10 @@ public class SubmitFeedbackServlet extends HttpServlet {
 
         if (isInserted) {
             logger.info("Feedback successfully inserted for: " + email);
-            response.sendRedirect("feedback/message.jsp?status=success&action=Insert");
+            response.sendRedirect("feedbackMessage?status=success&action=Insert");
         } else {
             logger.warning("Failed to insert feedback for: " + email);
-            response.sendRedirect("feedback/message.jsp?status=error&action=Insert");
+            response.sendRedirect("feedbackMessage?status=error&action=Insert");
         }
     }
 }

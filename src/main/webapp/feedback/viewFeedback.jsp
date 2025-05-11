@@ -130,7 +130,7 @@ if (filter == null) {
 						</form>
 					</div>
 
-					<a href="<%=request.getContextPath()%>/feedback/createFeedback.jsp"
+					<a href="<%=request.getContextPath()%>/createFeedback"
 						class="btn">Create New Feedback</a>
 				</div>
 
