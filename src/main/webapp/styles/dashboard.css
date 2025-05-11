@@ -4,6 +4,7 @@ body {
   padding: 0;
   min-height: 100vh;
   background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
 }
 
 body::before,
@@ -15,22 +16,41 @@ body::after {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3);
   z-index: -1;
+  animation: float 15s infinite ease-in-out alternate;
 }
 
 body::before {
   top: 100px;
   left: 120px;
+  animation-delay: 0s;
 }
 
 body::after {
   bottom: 80px;
   right: 180px;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(20px, -15px) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-10px, 10px) scale(0.9);
+    opacity: 0.4;
+  }
 }
 
 .main-container {
   display: flex;
   min-height: 100vh;
   height: auto;
+  transition: all 0.4s ease-out;
 }
 
 .main-content {
@@ -40,6 +60,13 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  animation: fadeIn 0.6s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .main-content h2 {
@@ -47,6 +74,23 @@ body::after {
   font-size: 28px;
   color: #333;
   align-self: flex-start;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  transition: width 0.4s ease;
+}
+
+.main-content h2:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
