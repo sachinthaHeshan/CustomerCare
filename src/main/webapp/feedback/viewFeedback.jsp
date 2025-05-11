@@ -96,7 +96,7 @@
         <div class="feedback-controls">
             <!-- Filter Form -->
             <div class="form-group">
-                <label for="filter">Filter:</label>
+                <!-- <label for="filter">Filter:</label> -->
                 <form action="<%= request.getContextPath() %>/ViewFeedback" method="get" style="display: flex; gap: 10px;">
                     <select class="form-control" id="filter" name="filter" onchange="this.form.submit()">
                         <option value="all" <%= "all".equals(filter) ? "selected" : "" %>>All Feedbacks</option>
