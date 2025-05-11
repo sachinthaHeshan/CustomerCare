@@ -33,14 +33,14 @@ public class EditFeedbackServlet extends HttpServlet {
                 request.getRequestDispatcher("/feedback/editFeedback.jsp").forward(request, response);
             } else {
                 logger.warning("No feedback found for id " + id);
-                response.sendRedirect("feedback/message.jsp?status=error&action=EditNotFound");
+                response.sendRedirect("feedbackMessage?status=error&action=EditNotFound");
             }
         } catch (NumberFormatException e) {
             logger.log(Level.SEVERE, "Invalid ID format in doGet()", e);
-            response.sendRedirect("feedback/message.jsp?status=error&action=InvalidID");
+            response.sendRedirect("feedbackMessage?status=error&action=InvalidID");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Exception in doGet()", e);
-            response.sendRedirect("feedback/message.jsp?status=error&action=Exception");
+            response.sendRedirect("feedbackMessage?status=error&action=Exception");
         }
     }
 
@@ -52,8 +52,6 @@ public class EditFeedbackServlet extends HttpServlet {
         try {
             Feedback feedback = new Feedback();
             feedback.setId(Integer.parseInt(request.getParameter("id")));
-            feedback.setName(request.getParameter("name"));
-            feedback.setEmail(request.getParameter("email"));
             feedback.setRating(Integer.parseInt(request.getParameter("rating")));
             feedback.setComments(request.getParameter("comments"));
 
@@ -64,17 +62,17 @@ public class EditFeedbackServlet extends HttpServlet {
 
             if (isUpdated) {
                 logger.info("Feedback updated successfully for ID: " + feedback.getId());
-                response.sendRedirect("feedback/message.jsp?status=success&action=Update");
+                response.sendRedirect("feedbackMessage?status=success&action=Update");
             } else {
                 logger.warning("Failed to update feedback for ID: " + feedback.getId());
-                response.sendRedirect("feedback/message.jsp?status=error&action=Update");
+                response.sendRedirect("feedbackMessage?status=error&action=Update");
             }
         } catch (NumberFormatException e) {
             logger.log(Level.SEVERE, "Invalid data format in doPost()", e);
-            response.sendRedirect("feedback/message.jsp?status=error&action=InvalidData");
+            response.sendRedirect("feedbackMessage?status=error&action=InvalidData");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Exception in doPost()", e);
-            response.sendRedirect("feedback/message.jsp?status=error&action=Exception");
+            response.sendRedirect("feedbackMessage?status=error&action=Exception");
         }
     }
 }

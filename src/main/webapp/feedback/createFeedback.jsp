@@ -12,13 +12,7 @@ import="com.customercare.model.User" %>
     />
     <script>
       function validateForm() {
-        const name = document.getElementById("name").value.trim();
         const comments = document.getElementById("comments").value.trim();
-
-        if (name.length < 3) {
-          alert("Name must be at least 3 characters long.");
-          return false;
-        }
 
         if (comments.length < 10) {
           alert("Comments must be at least 10 characters long.");
@@ -51,22 +45,6 @@ import="com.customercare.model.User" %>
             method="post"
             onsubmit="return validateForm();"
           >
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input class="form-control" type="text" id="name" name="name"
-              value="<%= session.getAttribute("user") != null ?
-              ((User)session.getAttribute("user")).getName() : "" %>" required
-              minlength="3" readonly>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input class="form-control" type="email" id="email" name="email"
-              value="<%= session.getAttribute("user") != null ?
-              ((User)session.getAttribute("user")).getEmail() : "" %>" required
-              readonly>
-            </div>
-
             <div class="form-group">
               <label for="rating">Rating:</label>
               <select

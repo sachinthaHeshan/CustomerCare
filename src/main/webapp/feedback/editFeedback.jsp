@@ -3,21 +3,24 @@
 <%
     Feedback f = (Feedback) request.getAttribute("feedback");
 %>
+<%@ include file="../auth/auth.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Edit Feedback</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/feedback.css">
+    <link
+    rel="stylesheet"
+    href="${pageContext.request.contextPath}/styles/main.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
     <script>
         function validateForm() {
-            const name = document.getElementById("name").value.trim();
             const comments = document.getElementById("comments").value.trim();
-
-            if (name.length < 3) {
-                alert("Name must be at least 3 characters long.");
-                return false;
-            }
 
             if (comments.length < 10) {
                 alert("Comments must be at least 10 characters long.");
@@ -29,21 +32,15 @@
     </script>
 </head>
 <body>
+    <div class="main-container">
+        <%@ include file="../layout/side-bar.jsp"%>
+        <div class="main-content">
+          <%@ include file="../layout/header.jsp"%>
     <div class="container">
         <h2>Edit Your Feedback</h2>
         
         <form class="feedback-form" action="<%= request.getContextPath() %>/EditFeedback" method="post" onsubmit="return validateForm()">
             <input type="hidden" name="id" value="<%= f.getId() %>" />
-            
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="<%= f.getName() %>" required minlength="3">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= f.getEmail() %>" required>
-            </div>
             
             <div class="form-group">
                 <label for="rating">Rating:</label>
@@ -66,6 +63,8 @@
                 <input type="submit" class="btn btn-block" value="Update Feedback">
             </div>
         </form>
+    </div>
+    </div>  
     </div>
 </body>
 </html>

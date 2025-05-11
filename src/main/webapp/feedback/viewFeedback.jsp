@@ -137,7 +137,6 @@ if (filter == null) {
 				<table class="feedback-table">
 					<thead>
 						<tr>
-							<th>Name</th>
 							<th>Rating</th>
 							<th>Comments</th>
 							<th>Actions</th>
@@ -149,7 +148,6 @@ if (filter == null) {
 							for (Feedback f : feedbackList) {
 						%>
 						<tr>
-							<td><%=f.getName()%></td>
 							<td>
 								<div class="rating-stars">
 									<%
@@ -175,8 +173,8 @@ if (filter == null) {
 								<%
 								} else {
 								%> <span>-</span> <%
- }
- %>
+								}
+								%>
 							</td>
 						</tr>
 						<%
@@ -184,7 +182,7 @@ if (filter == null) {
 						} else {
 						%>
 						<tr>
-							<td colspan="4" class="no-feedback">No feedback found.</td>
+							<td colspan="3" class="no-feedback">No feedback found.</td>
 						</tr>
 						<%
 						}
