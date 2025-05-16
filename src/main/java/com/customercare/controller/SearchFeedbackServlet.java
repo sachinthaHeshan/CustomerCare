@@ -1,6 +1,6 @@
 package com.customercare.controller;
 
-import com.customercare.dao.FeedbackDAO;
+import com.customercare.service.FeedbackService;
 import com.customercare.model.Feedback;
 
 import javax.servlet.ServletException;
@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 public class SearchFeedbackServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(SearchFeedbackServlet.class.getName());
+    private FeedbackService feedbackService;
+    
+    @Override
+    public void init() throws ServletException {
+        feedbackService = new FeedbackService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -22,8 +28,7 @@ public class SearchFeedbackServlet extends HttpServlet {
         String query = request.getParameter("query");
         logger.info("SearchFeedbackServlet - Query received: " + query);
 
-        FeedbackDAO dao = new FeedbackDAO();
-        List<Feedback> searchResults = dao.searchFeedback(query);
+        List<Feedback> searchResults = feedbackService.searchFeedback(query);
 
         request.setAttribute("feedbackList", searchResults);
         request.getRequestDispatcher("/feedback/viewFeedback.jsp").forward(request, response);

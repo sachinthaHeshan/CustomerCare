@@ -33,7 +33,7 @@ public class TicketServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         if (id == 0) {
-            int generatedId = service.insertTicketAndReturnId(t);
+            int generatedId = service.createTicket(t);
             session.setAttribute("currentTicketId", generatedId);
         } else {
             t.setId(id);

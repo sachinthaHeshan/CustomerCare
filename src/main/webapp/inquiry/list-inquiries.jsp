@@ -112,14 +112,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                               <c:if
                                 test="${user.id == inquiry.userId || user.type == 'admin'}"
                               >
-                                <a
-                                  href="${pageContext.request.contextPath}/InquiryServlet?action=DELETE&id=${inquiry.id}"
-                                  class="btn-delete"
-                                  title="Delete Inquiry"
-                                  onclick="return confirm('Are you sure you want to delete this inquiry?')"
-                                >
-                                  <i class="fas fa-trash"></i>
-                                </a>
+                                <form method="post" action="${pageContext.request.contextPath}/InquiryServlet" style="display:inline;">
+                                  <input type="hidden" name="action" value="DELETE">
+                                  <input type="hidden" name="id" value="${inquiry.id}">
+                                  <button type="submit" class="btn-delete" title="Delete Inquiry" 
+                                    onclick="return confirm('Are you sure you want to delete this inquiry?')">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+                                </form>
                               </c:if>
                             </td>
                           </tr>

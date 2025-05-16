@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.customercare.model.Faq" %>
-<%@ page import="com.customercare.dao.FaqDAO" %>
+<%@ page import="com.customercare.service.FaqService" %>
 <%@ page import="java.util.List" %>
 <%@ include file="../auth/auth.jsp"%>
 <!DOCTYPE html>
@@ -31,8 +31,8 @@
         if (faqs == null) {
             System.out.println("FAQs attribute was null, trying to get FAQs directly from database");
             try {
-                FaqDAO faqDAO = new FaqDAO();
-                faqs = faqDAO.getAllFaqs();
+                FaqService faqService = new FaqService();
+                faqs = faqService.getAllFaqs();
                 System.out.println("1Retrieved " + (faqs != null ? faqs.size() : "null") + " FAQs directly from database");
             } catch (Exception e) {
                 System.out.println("Error getting FAQs from database: " + e.getMessage());
