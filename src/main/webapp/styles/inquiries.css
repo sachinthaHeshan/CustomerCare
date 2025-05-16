@@ -280,3 +280,7 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(67, 97, 238, 0.4);
 }
+
+.content-section {
+  width: 100%;
+}
