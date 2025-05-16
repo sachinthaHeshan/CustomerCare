@@ -16,7 +16,9 @@ pageEncoding="UTF-8"%>
 
         <nav>
           <ul>
-            <li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
+            <li>
+              <a href="${pageContext.request.contextPath}/public-faq">FAQ</a>
+            </li>
             <li><a href="#">Contact Us</a></li>
             <li><a href="login" class="login">Login</a></li>
             <li><a href="register" class="register">Register</a></li>
