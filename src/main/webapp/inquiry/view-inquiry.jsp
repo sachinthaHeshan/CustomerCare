@@ -61,7 +61,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       }
       
       .inquiry-actions a {
-        padding: 10px 16px;
+        padding: 10px 40px;
         border-radius: 6px;
         text-decoration: none;
         font-size: 14px;

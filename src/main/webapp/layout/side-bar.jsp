@@ -38,12 +38,6 @@
           ><i class="fas fa-plus-circle">&nbsp;&nbsp;</i>New Inquiry</a
         >
       </li>
-      <li>
-        <a href="faq" <%= path.contains("/faq") ? "class=\"active\"" : "" %>
-          ><i class="fas fa-question">&nbsp;&nbsp;</i>FAQ ${user != null ?
-          user.getType() : ""}</a
-        >
-      </li>
       <% } %>
       
       <% if ("admin".equals(user.getType()) || "support".equals(user.getType())) { %>
@@ -52,6 +46,14 @@
       </li>
       <li>
         <a href="${pageContext.request.contextPath}/InquiryServlet?action=LIST" <%= path.contains("/inquiry") ? "class=\"active\"" : "" %>><i class="fas fa-question-circle">&nbsp;&nbsp;</i>All Inquiries</a>
+      </li>
+      <% } %>
+      
+      <% if ("admin".equals(user.getType())) { %>
+      <li>
+        <a href="faq" <%= path.contains("/faq") ? "class=\"active\"" : "" %>
+          ><i class="fas fa-question">&nbsp;&nbsp;</i>FAQ</a
+        >
       </li>
       <% } %>
       
