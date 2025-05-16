@@ -34,7 +34,7 @@ public class SubmitFeedbackServlet extends HttpServlet {
 
         logger.info("SubmitFeedbackServlet - Submitting feedback: user ID: " + user.getId() + ", rating: " + ratingStr + ", comments: " + comments);
 
-        // Simple validation
+        // validation
         if (ratingStr == null || comments == null || comments.trim().length() < 10) {
             logger.warning("Validation failed - Invalid input");
             response.sendRedirect("feedbackMessage?status=error&action=Validation");
