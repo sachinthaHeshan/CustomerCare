@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.customercare.dao.FaqDAO;
+import com.customercare.service.FaqService;
 import com.customercare.model.Faq;
 
 import java.io.IOException;
@@ -17,6 +17,12 @@ public class AddFaqServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    private FaqService faqService;
+    
+    @Override
+    public void init() throws ServletException {
+        faqService = new FaqService();
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,8 +34,8 @@ public class AddFaqServlet extends HttpServlet {
             faq.setCategory(request.getParameter("category"));
             faq.setAnswer(request.getParameter("answer")); // ✅ Set the answer
 
-            new FaqDAO().insertFaq(faq);
-            request.setAttribute("faqs", new FaqDAO().getAllFaqs());
+            faqService.insertFaq(faq);
+            request.setAttribute("faqs", faqService.getAllFaqs());
             request.getRequestDispatcher("faqList.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", "Something went wrong: " + e.getMessage());

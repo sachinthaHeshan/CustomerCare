@@ -12,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.customercare.model.Inquiry;
-import com.customercare.model.User;
-import com.customercare.service.InquiryDAO;
+import com.customercare.model.User; 
+import com.customercare.service.InquiryService;
+
 
 @WebServlet("/InquiryServlet")
 public class InquiryServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private InquiryDAO inquiryDAO;
+    private InquiryService inquiryService;
     
     public InquiryServlet() {
         super();
-        inquiryDAO = new InquiryDAO();
+        inquiryService = new InquiryService();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,6 +43,9 @@ public class InquiryServlet extends HttpServlet {
             case "NEW":
                 showNewForm(request, response);
                 break;
+            case "DELETE":
+                deleteInquiry(request, response);
+                break;
             default:
                 listInquiries(request, response);
                 break;
@@ -60,6 +64,9 @@ public class InquiryServlet extends HttpServlet {
             case "UPDATE":
                 updateInquiry(request, response);
                 break;
+            case "DELETE":
+                deleteInquiry(request, response);
+                break;
             default:
                 doGet(request, response);
                 break;
@@ -77,7 +84,7 @@ public class InquiryServlet extends HttpServlet {
         
         int inquiryId = Integer.parseInt(request.getParameter("id"));
         
-        boolean success = inquiryDAO.deleteInquiry(inquiryId);
+        boolean success = inquiryService.deleteInquiry(inquiryId);
         
         if (success) {
             request.setAttribute("successMessage", "Inquiry deleted successfully!");
@@ -109,7 +116,7 @@ public class InquiryServlet extends HttpServlet {
         
         Inquiry inquiry = new Inquiry(user.getId(), category, subject, description, contactMethod);
         
-        boolean success = inquiryDAO.createInquiry(inquiry);
+        boolean success = inquiryService.createInquiry(inquiry);
         
         if (success) {
             request.setAttribute("successMessage", "Inquiry submitted successfully!");
@@ -134,10 +141,10 @@ public class InquiryServlet extends HttpServlet {
         
         // Admin and support can see all inquiries
         if ("admin".equals(user.getType()) || "support".equals(user.getType())) {
-            inquiries = inquiryDAO.getAllInquiries();
+            inquiries = inquiryService.getAllInquiries();
         } else {
             // Customers can only see their own inquiries
-            inquiries = inquiryDAO.getInquiriesByUserId(user.getId());
+            inquiries = inquiryService.getInquiriesByUserId(user.getId());
         }
         
         request.setAttribute("inquiries", inquiries);
@@ -155,7 +162,7 @@ public class InquiryServlet extends HttpServlet {
         }
         
         int inquiryId = Integer.parseInt(request.getParameter("id"));
-        Inquiry inquiry = inquiryDAO.getInquiryById(inquiryId);
+        Inquiry inquiry = inquiryService.getInquiryById(inquiryId);
         
         // Check if user is authorized to view this inquiry
         boolean authorized = "admin".equals(user.getType()) || 
@@ -173,8 +180,35 @@ public class InquiryServlet extends HttpServlet {
     }
   
     private void deleteInquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Keeping for backward compatibility
-        doDelete(request, response);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+         
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            return;
+        }
+        
+        int inquiryId = Integer.parseInt(request.getParameter("id"));
+        Inquiry inquiry = inquiryService.getInquiryById(inquiryId);
+        
+        // Check if user is authorized to delete this inquiry
+        boolean authorized = "admin".equals(user.getType()) || 
+                            (inquiry != null && inquiry.getUserId() == user.getId());
+        
+        if (!authorized) {
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            return;
+        }
+        
+        boolean success = inquiryService.deleteInquiry(inquiryId);
+        
+        if (success) {
+            request.getSession().setAttribute("successMessage", "Inquiry deleted successfully!");
+        } else {
+            request.getSession().setAttribute("errorMessage", "Failed to delete inquiry. Please try again.");
+        }
+        
+        response.sendRedirect(request.getContextPath() + "/InquiryServlet?action=LIST");
     }
     
     private void updateInquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -187,7 +221,7 @@ public class InquiryServlet extends HttpServlet {
         }
         
         int inquiryId = Integer.parseInt(request.getParameter("id"));
-        Inquiry currentInquiry = inquiryDAO.getInquiryById(inquiryId);
+        Inquiry currentInquiry = inquiryService.getInquiryById(inquiryId);
         
         // Check if user is authorized to edit this inquiry
         boolean authorized = "admin".equals(user.getType()) || 
@@ -215,7 +249,7 @@ public class InquiryServlet extends HttpServlet {
             currentInquiry.getCreatedAt()
         );
         
-        boolean success = inquiryDAO.updateInquiry(updatedInquiry);
+        boolean success = inquiryService.updateInquiry(updatedInquiry);
         
         if (success) {
             request.setAttribute("successMessage", "Inquiry updated successfully!");

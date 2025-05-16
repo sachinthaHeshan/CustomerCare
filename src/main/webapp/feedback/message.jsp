@@ -20,7 +20,7 @@ if ("success".equals(status)) {
 <title>Feedback Status</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/styles/feedback.css">
-	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -37,7 +37,7 @@ if ("success".equals(status)) {
 				</div>
 				<h2><%=message%></h2>
 				<div>
-					<a href="ViewFeedback" class="btn">Back to Feedback List</a>
+					<a href="${pageContext.request.contextPath}/ViewFeedback" class="btn">Back to Feedback List</a>
 				</div>
 			</div>
 

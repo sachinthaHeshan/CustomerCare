@@ -8,17 +8,17 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.customercare.dao.UserDAO;
+import com.customercare.service.UserService;
 import com.customercare.model.User;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
-	private UserDAO userDAO;
+	private UserService userService;
 
 	@Override
 	public void init() {
-		userDAO = new UserDAO();
+		userService = new UserService();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		User user = userDAO.authenticate(email, password);
+		User user = userService.authenticate(email, password);
 
 		if (user != null) {
 			HttpSession session = request.getSession();
@@ -73,13 +73,13 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		// Check if email already exists
-		if (userDAO.isEmailExists(email)) {
+		if (userService.isEmailExists(email)) {
 			response.sendRedirect("auth/register.jsp?error=Email+already+exists");
 			return;
 		}
 		
 		// Register the user
-		boolean success = userDAO.register(name, email, password);
+		boolean success = userService.register(name, email, password);
 		
 		if (success) {
 			logger.info("Registration successful for: " + email);

@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.customercare.dao.FaqDAO;
+import com.customercare.service.FaqService;
 import com.customercare.model.Faq;
 
 @WebServlet("/public-faq")
 public class PublicFaqServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private FaqService faqService;
     
     @Override
     public void init() throws ServletException {
         System.out.println("PublicFaqServlet initialized");
+        faqService = new FaqService();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,8 +30,7 @@ public class PublicFaqServlet extends HttpServlet {
         try {
             // Load all FAQs
             System.out.println("Loading all FAQs for public view");
-            FaqDAO faqDAO = new FaqDAO();
-            List<Faq> faqs = faqDAO.getAllFaqs();
+            List<Faq> faqs = faqService.getAllFaqs();
             System.out.println("Loaded " + (faqs != null ? faqs.size() : "null") + " FAQs for public view");
             
             request.setAttribute("faqs", faqs);

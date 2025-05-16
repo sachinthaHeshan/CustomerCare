@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.customercare.dao.FaqDAO;
+import com.customercare.service.FaqService;
 import com.customercare.model.Faq;
 
 @WebServlet("/faq")
 public class FaqServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private FaqService faqService;
     
     @Override
     public void init() throws ServletException {
         System.out.println("FaqServlet initialized");
+        faqService = new FaqService();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,8 +38,7 @@ public class FaqServlet extends HttpServlet {
             if (action == null || action.equals("list")) {
                 // List all FAQs
                 System.out.println("Loading all FAQs");
-                FaqDAO faqDAO = new FaqDAO();
-                List<Faq> faqs = faqDAO.getAllFaqs();
+                List<Faq> faqs = faqService.getAllFaqs();
                 System.out.println("Loaded " + (faqs != null ? faqs.size() : "null") + " FAQs");
                 
                 // Make sure the attribute is explicitly set
@@ -54,7 +55,7 @@ public class FaqServlet extends HttpServlet {
                 
                 int id = Integer.parseInt(request.getParameter("id"));
                 System.out.println("Editing FAQ with ID: " + id);
-                Faq faq = new FaqDAO().getFaqById(id);
+                Faq faq = faqService.getFaqById(id);
                 request.setAttribute("faq", faq);
                 request.getRequestDispatcher("/faq/editFaq.jsp").forward(request, response);
             } else if (action.equals("new")) {
@@ -91,7 +92,7 @@ public class FaqServlet extends HttpServlet {
                 faq.setCategory(request.getParameter("category"));
                 faq.setAnswer(request.getParameter("answer"));
                 
-                new FaqDAO().insertFaq(faq);
+                faqService.insertFaq(faq);
                 
                 // Redirect to list view
                 response.sendRedirect(request.getContextPath() + "/faq");
@@ -105,7 +106,7 @@ public class FaqServlet extends HttpServlet {
                 faq.setCategory(request.getParameter("category"));
                 faq.setAnswer(request.getParameter("answer"));
                 
-                new FaqDAO().updateFaq(faq);
+                faqService.updateFaq(faq);
                 
                 // Redirect to list view
                 response.sendRedirect(request.getContextPath() + "/faq");
@@ -129,7 +130,7 @@ public class FaqServlet extends HttpServlet {
         
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            new FaqDAO().deleteFaq(id);
+            faqService.deleteFaq(id);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
             System.err.println("Error in FaqServlet doDelete: " + e.getMessage());
