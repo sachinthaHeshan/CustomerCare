@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.customercare.dao.InquiryDAO;
 import com.customercare.model.Inquiry;
 import com.customercare.model.User;
+import com.customercare.service.InquiryDAO;
 
 @WebServlet("/InquiryServlet")
 public class InquiryServlet extends HttpServlet {
@@ -29,7 +29,7 @@ public class InquiryServlet extends HttpServlet {
         String action = request.getParameter("action");
         
         if (action == null) {
-            action = "LIST"; // Default action
+            action = "LIST"; 
         }
         
         switch (action) {
@@ -42,15 +42,12 @@ public class InquiryServlet extends HttpServlet {
             case "NEW":
                 showNewForm(request, response);
                 break;
-            case "DELETE":
-                deleteInquiry(request, response);
-                break;
             default:
                 listInquiries(request, response);
                 break;
         }
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doPost method called");
 
@@ -67,6 +64,28 @@ public class InquiryServlet extends HttpServlet {
                 doGet(request, response);
                 break;
         }
+    }
+    
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+         
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            return;
+        }
+        
+        int inquiryId = Integer.parseInt(request.getParameter("id"));
+        
+        boolean success = inquiryDAO.deleteInquiry(inquiryId);
+        
+        if (success) {
+            request.setAttribute("successMessage", "Inquiry deleted successfully!");
+        } else {
+            request.setAttribute("errorMessage", "Failed to delete inquiry. Please try again.");
+        }
+        
+        response.sendRedirect(request.getContextPath() + "/InquiryServlet?action=LIST");
     }
     
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,7 +132,7 @@ public class InquiryServlet extends HttpServlet {
         
         List<Inquiry> inquiries;
         
-        // Admin and support staff can see all inquiries
+        // Admin and support can see all inquiries
         if ("admin".equals(user.getType()) || "support".equals(user.getType())) {
             inquiries = inquiryDAO.getAllInquiries();
         } else {
@@ -154,25 +173,8 @@ public class InquiryServlet extends HttpServlet {
     }
   
     private void deleteInquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-         
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
-            return;
-        }
-        
-        int inquiryId = Integer.parseInt(request.getParameter("id"));
-        
-        boolean success = inquiryDAO.deleteInquiry(inquiryId);
-        
-        if (success) {
-            request.setAttribute("successMessage", "Inquiry deleted successfully!");
-        } else {
-            request.setAttribute("errorMessage", "Failed to delete inquiry. Please try again.");
-        }
-        
-        response.sendRedirect(request.getContextPath() + "/InquiryServlet?action=LIST");
+        // Keeping for backward compatibility
+        doDelete(request, response);
     }
     
     private void updateInquiry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
