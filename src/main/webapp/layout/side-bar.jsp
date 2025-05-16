@@ -31,11 +31,11 @@
       </li>
 
       <li>
-        <a href="#" <%= path.contains("/inquiries") ? "class=\"active\"" : "" %>><i class="fas fa-briefcase">&nbsp;&nbsp;</i>Inquiries</a>
+        <a href="${pageContext.request.contextPath}/InquiryServlet?action=LIST" <%= path.contains("/inquiry") && !path.contains("create-inquiry.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-question-circle">&nbsp;&nbsp;</i>My Inquiries</a>
       </li>
       <li>
-        <a href="#" <%= path.contains("/add-inquiry") ? "class=\"active\"" : "" %>
-          ><i class="fas fa-external-link-square">&nbsp;&nbsp;</i>Add Inquiry</a
+        <a href="${pageContext.request.contextPath}/InquiryServlet?action=NEW" <%= path.contains("/inquiry/create-inquiry.jsp") ? "class=\"active\"" : "" %>
+          ><i class="fas fa-plus-circle">&nbsp;&nbsp;</i>New Inquiry</a
         >
       </li>
       <li>
@@ -49,6 +49,9 @@
       <% if ("admin".equals(user.getType()) || "support".equals(user.getType())) { %>
       <li>
         <a href="${pageContext.request.contextPath}/TicketServlet?action=LIST" <%= path.contains("/list-tickets.jsp") ? "class=\"active\"" : "" %>><i class="fas fa-ticket">&nbsp;&nbsp;</i>All Tickets</a>
+      </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/InquiryServlet?action=LIST" <%= path.contains("/inquiry") ? "class=\"active\"" : "" %>><i class="fas fa-question-circle">&nbsp;&nbsp;</i>All Inquiries</a>
       </li>
       <% } %>
       
