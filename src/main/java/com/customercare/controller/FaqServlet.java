@@ -1,6 +1,5 @@
 package com.customercare.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.customercare.dao.FaqDAO;
 import com.customercare.model.Faq;
+
+import java.io.IOException;
 
 @WebServlet("/faq")
 public class FaqServlet extends HttpServlet {
@@ -34,20 +35,20 @@ public class FaqServlet extends HttpServlet {
         
         try {
             if (action == null || action.equals("list")) {
-                // List all FAQs
+                
                 System.out.println("Loading all FAQs");
                 FaqDAO faqDAO = new FaqDAO();
                 List<Faq> faqs = faqDAO.getAllFaqs();
                 System.out.println("Loaded " + (faqs != null ? faqs.size() : "null") + " FAQs");
                 
-                // Make sure the attribute is explicitly set
+                
                 request.setAttribute("faqs", faqs);
                 
-                // Check if attribute was set properly
+               
                 Object attrCheck = request.getAttribute("faqs");
                 System.out.println("Attribute check - faqs: " + (attrCheck != null ? "set correctly" : "null!"));
                 
-                // Forward to JSP
+                
                 System.out.println("Forwarding to /faq/faqList.jsp");
                 request.getRequestDispatcher("/faq/faqList.jsp").forward(request, response);
             } else if (action.equals("edit")) {
@@ -58,7 +59,7 @@ public class FaqServlet extends HttpServlet {
                 request.setAttribute("faq", faq);
                 request.getRequestDispatcher("/faq/editFaq.jsp").forward(request, response);
             } else if (action.equals("new")) {
-                // New FAQ form
+               
                 
                 System.out.println("Creating new FAQ");
                 request.getRequestDispatcher("/faq/faqForm.jsp").forward(request, response);
@@ -73,7 +74,7 @@ public class FaqServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Check if user is logged in
+        
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -83,7 +84,7 @@ public class FaqServlet extends HttpServlet {
         
         try {
             if (action == null || action.equals("add")) {
-                // Add new FAQ
+               
                 Faq faq = new Faq();
                 faq.setCustomerName(request.getParameter("customerName"));
                 faq.setEmail(request.getParameter("email"));
@@ -93,7 +94,7 @@ public class FaqServlet extends HttpServlet {
                 
                 new FaqDAO().insertFaq(faq);
                 
-                // Redirect to list view
+                
                 response.sendRedirect(request.getContextPath() + "/faq");
             } else if (action.equals("update")) {
                 // Update existing FAQ
@@ -120,7 +121,7 @@ public class FaqServlet extends HttpServlet {
     
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Check if user is logged in
+       
         if (request.getSession().getAttribute("user") == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Login required");

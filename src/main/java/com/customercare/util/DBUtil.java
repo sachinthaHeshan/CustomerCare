@@ -8,12 +8,12 @@ public class DBUtil {
 
     private static final String URL = "jdbc:mysql://localhost:3306/customercare";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345678Abc";
+    private static final String PASSWORD = "123456";
 
-    // Get a connection to the database
+    
     public static Connection getConnection() throws SQLException {
         try {
-            // Load the MySQL JDBC driver
+            
             System.out.println("Attempting to get database connection...");
             System.out.println("JDBC URL: " + URL);
             System.out.println("JDBC User: " + USER);
@@ -22,7 +22,7 @@ public class DBUtil {
                 Class.forName("com.mysql.jdbc.Driver");
                 System.out.println("Driver loaded successfully: com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                // Try the newer driver name if the old one doesn't work
+                
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     System.out.println("Driver loaded successfully: com.mysql.cj.jdbc.Driver");
@@ -42,7 +42,7 @@ public class DBUtil {
         }
     }
 
-    // Close connection
+    
     public static void close(Connection conn) {
         if (conn != null) {
             try {

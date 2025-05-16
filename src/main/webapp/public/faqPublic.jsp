@@ -154,11 +154,7 @@
                 for (Faq f : faqs) {
         %>
                 <div class="faq-item">
-                    <div class="customer-info">
-                        <i class="fas fa-user-circle" style="margin-right: 8px; color: #03a9f4;"></i>
-                        <strong><%= f.getCustomerName() %></strong> 
-                        (<%= f.getEmail() %>)
-                    </div>
+                    
                     <div class="question"><%= f.getQuestion() %></div>
                     <div class="category"><i class="fas fa-tag" style="margin-right: 5px;"></i> <%= f.getCategory() %></div>
                     
