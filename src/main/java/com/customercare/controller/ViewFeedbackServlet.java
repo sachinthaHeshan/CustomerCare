@@ -1,6 +1,6 @@
 package com.customercare.controller;
 
-import com.customercare.dao.FeedbackDAO;
+import com.customercare.service.FeedbackService;
 import com.customercare.model.Feedback;
 import com.customercare.model.User;
 
@@ -15,12 +15,17 @@ import java.util.logging.Logger;
 public class ViewFeedbackServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(ViewFeedbackServlet.class.getName());
+    private FeedbackService feedbackService;
+    
+    @Override
+    public void init() throws ServletException {
+        feedbackService = new FeedbackService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        FeedbackDAO dao = new FeedbackDAO();
         HttpSession session = request.getSession(false);
         User sessionUser = (session != null) ? (User) session.getAttribute("user") : null;
 
@@ -29,10 +34,10 @@ public class ViewFeedbackServlet extends HttpServlet {
 
         if ("mine".equalsIgnoreCase(filter) && sessionUser != null) {
             logger.info("ViewFeedbackServlet - Fetching feedback for user ID: " + sessionUser.getId());
-            feedbackList = dao.getFeedbackByUserId(sessionUser.getId());
+            feedbackList = feedbackService.getFeedbackByUserId(sessionUser.getId());
         } else {
             logger.info("ViewFeedbackServlet - Fetching all feedback entries");
-            feedbackList = dao.getAllFeedback();
+            feedbackList = feedbackService.getAllFeedback();
         }
 
         logger.info("Fetched " + (feedbackList != null ? feedbackList.size() : 0) + " feedback entries");
