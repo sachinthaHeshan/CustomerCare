@@ -29,7 +29,7 @@
     </header>
 
     <div class="container" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
-        <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+        <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions1111</h2>
 
         <% 
             List<Faq> faqs = (List<Faq>) request.getAttribute("faqs");
