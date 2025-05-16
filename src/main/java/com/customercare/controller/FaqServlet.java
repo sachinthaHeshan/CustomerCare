@@ -23,6 +23,12 @@ public class FaqServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Check if user is logged in
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
         String action = request.getParameter("action");
         System.out.println("FaqServlet doGet called with action: " + action);
         
@@ -45,7 +51,7 @@ public class FaqServlet extends HttpServlet {
                 System.out.println("Forwarding to /faq/faqList.jsp");
                 request.getRequestDispatcher("/faq/faqList.jsp").forward(request, response);
             } else if (action.equals("edit")) {
-                // Edit FAQ
+                
                 int id = Integer.parseInt(request.getParameter("id"));
                 System.out.println("Editing FAQ with ID: " + id);
                 Faq faq = new FaqDAO().getFaqById(id);
@@ -53,6 +59,7 @@ public class FaqServlet extends HttpServlet {
                 request.getRequestDispatcher("/faq/editFaq.jsp").forward(request, response);
             } else if (action.equals("new")) {
                 // New FAQ form
+                
                 System.out.println("Creating new FAQ");
                 request.getRequestDispatcher("/faq/faqForm.jsp").forward(request, response);
             }
@@ -66,6 +73,12 @@ public class FaqServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Check if user is logged in
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        
         String action = request.getParameter("action");
         
         try {
@@ -107,6 +120,13 @@ public class FaqServlet extends HttpServlet {
     
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Check if user is logged in
+        if (request.getSession().getAttribute("user") == null) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Login required");
+            return;
+        }
+        
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             new FaqDAO().deleteFaq(id);
