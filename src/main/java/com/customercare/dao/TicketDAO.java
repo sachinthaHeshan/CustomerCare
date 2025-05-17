@@ -10,6 +10,8 @@ public class TicketDAO {
     public int insertTicketAndReturnId(Ticket t) {
         int generatedId = 0;
         try (Connection conn = DBUtil.getConnection();
+        		
+        	//insert to database
              PreparedStatement ps = conn.prepareStatement(
                 "INSERT INTO tickets (customer_name, ticket_type, issue, product_service, contact_number, email) VALUES (?, ?, ?, ?, ?, ?)",
                 Statement.RETURN_GENERATED_KEYS)) {
@@ -31,6 +33,7 @@ public class TicketDAO {
         return generatedId;
     }
 
+    //show all tickets from dattabase
     public List<Ticket> getAllTickets() {
         List<Ticket> list = new ArrayList<>();
         try (Connection conn = DBUtil.getConnection();
@@ -62,6 +65,7 @@ public class TicketDAO {
         return list;
     }
 
+    //delete ticket from database
     public boolean deleteTicket(int id) {
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement("DELETE FROM tickets WHERE id=?")) {
@@ -94,6 +98,7 @@ public class TicketDAO {
         return t;
     }
 
+    //update ticket in the database
     public boolean updateTicket(Ticket t) {
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(

@@ -4,12 +4,12 @@ pageEncoding="UTF-8"%> <%@ include file="../auth/auth.jsp"%>
 <html>
   <head>
     <title>Add FAQ</title>
-    <!-- Global styles -->
+   
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/styles.css"
     />
-    <!-- Page-specific styles -->
+    
     <link
       rel="stylesheet"
       href="${pageContext.request.contextPath}/styles/edit-faq.css"

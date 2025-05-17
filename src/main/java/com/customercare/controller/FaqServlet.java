@@ -25,7 +25,7 @@ public class FaqServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Check if user is logged in
+        
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -36,15 +36,15 @@ public class FaqServlet extends HttpServlet {
         
         try {
             if (action == null || action.equals("list")) {
-                // List all FAQs
+                // list all FAQs
                 System.out.println("Loading all FAQs");
                 List<Faq> faqs = faqService.getAllFaqs();
                 System.out.println("Loaded " + (faqs != null ? faqs.size() : "null") + " FAQs");
                 
-                // Make sure the attribute is explicitly set
+                
                 request.setAttribute("faqs", faqs);
                 
-                // Check if attribute was set properly
+                
                 Object attrCheck = request.getAttribute("faqs");
                 System.out.println("Attribute check - faqs: " + (attrCheck != null ? "set correctly" : "null!"));
                 
@@ -59,7 +59,7 @@ public class FaqServlet extends HttpServlet {
                 request.setAttribute("faq", faq);
                 request.getRequestDispatcher("/faq/editFaq.jsp").forward(request, response);
             } else if (action.equals("new")) {
-                // New FAQ form
+                
                 
                 System.out.println("Creating new FAQ");
                 request.getRequestDispatcher("/faq/faqForm.jsp").forward(request, response);
@@ -74,7 +74,7 @@ public class FaqServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Check if user is logged in
+        
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -94,7 +94,7 @@ public class FaqServlet extends HttpServlet {
                 
                 faqService.insertFaq(faq);
                 
-                // Redirect to list view
+                
                 response.sendRedirect(request.getContextPath() + "/faq");
             } else if (action.equals("update")) {
                 // Update existing FAQ
@@ -108,7 +108,7 @@ public class FaqServlet extends HttpServlet {
                 
                 faqService.updateFaq(faq);
                 
-                // Redirect to list view
+                
                 response.sendRedirect(request.getContextPath() + "/faq");
             }
         } catch (Exception e) {

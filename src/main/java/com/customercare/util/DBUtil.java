@@ -22,7 +22,7 @@ public class DBUtil {
                 Class.forName("com.mysql.jdbc.Driver");
                 System.out.println("Driver loaded successfully: com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                // Try the newer driver name if the old one doesn't work
+
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     System.out.println("Driver loaded successfully: com.mysql.cj.jdbc.Driver");

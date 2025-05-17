@@ -20,7 +20,7 @@ if (filter == null) {
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/styles/feedback.css">
 <style>
-/* Additional styles specific to viewFeedback */
+/* styles only for this file */
 .feedback-controls {
 	display: flex;
 	flex-wrap: wrap;

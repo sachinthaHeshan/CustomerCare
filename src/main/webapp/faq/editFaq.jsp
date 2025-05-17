@@ -8,9 +8,8 @@
 <html>
 <head>
     <title>Edit FAQ</title>
-    <!-- Global styles -->
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css" />
-    <!-- Page-specific styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/edit-faq.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

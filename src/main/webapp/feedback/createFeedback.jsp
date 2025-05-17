@@ -1,6 +1,8 @@
 <%@ include file="../auth/auth.jsp"%> <%@ page language="java"
 contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <%@ page
+
 import="com.customercare.model.User" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,6 +12,8 @@ import="com.customercare.model.User" %>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/styles/feedback.css"
     />
+    
+    <!-- form validation -->
     <script>
       function validateForm() {
         const comments = document.getElementById("comments").value.trim();

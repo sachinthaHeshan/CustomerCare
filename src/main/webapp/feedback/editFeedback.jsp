@@ -18,6 +18,8 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
+  
+  	<!-- form validation -->
     <script>
         function validateForm() {
             const comments = document.getElementById("comments").value.trim();

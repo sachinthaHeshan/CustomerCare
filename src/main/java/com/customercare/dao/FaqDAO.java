@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 public class FaqDAO {
 
-    // Insert FAQ
+    
     public void insertFaq(Faq faq) throws Exception {
         String sql = "INSERT INTO faq (customerName, email, question, category, answer) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -21,7 +21,7 @@ public class FaqDAO {
         }
     }
 
-    // Get all FAQs
+    
     public ArrayList<Faq> getAllFaqs() throws Exception {
         ArrayList<Faq> faqs = new ArrayList<>();
         
@@ -90,7 +90,7 @@ public class FaqDAO {
     }
 
 
-    // Delete FAQ
+    
     public void deleteFaq(int id) throws Exception {
         String sql = "DELETE FROM faq WHERE id=?";
         try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {

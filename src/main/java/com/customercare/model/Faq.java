@@ -6,7 +6,7 @@ public class Faq {
     private String email;
     private String question;
     private String category;
-    private String answer; // ✅ Add this field
+    private String answer; 
 
     // Constructors
     public Faq() {}
@@ -17,7 +17,7 @@ public class Faq {
         this.email = email;
         this.question = question;
         this.category = category;
-        this.answer = answer; // ✅ Initialize it
+        this.answer = answer; 
     }
 
     // Getter and Setter for id
@@ -65,7 +65,7 @@ public class Faq {
         this.category = category;
     }
 
-    // ✅ Getter and Setter for answer
+    // Getter and Setter for answer
     public String getAnswer() {
         return answer;
     }

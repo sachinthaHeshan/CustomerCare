@@ -31,6 +31,8 @@
           
 
             <main>
+            
+            	<!-- form creation -->
                 <form action="${pageContext.request.contextPath}/TicketServlet" method="post" class="ticket-form">
                     <input type="hidden" name="id" value="<%= isEdit ? ticket.getId() : "" %>">
 
@@ -66,7 +68,7 @@
 
                     <div class="form-group">
                         <label for="contactNumber">Contact Number</label>
-                        <input type="text" id="contactNumber" name="contactNumber" pattern="\d{10}" required value="<%= isEdit ? ticket.getContactNumber() : "" %>" placeholder="10-digit number"/>
+                        <input type="text" id="contactNumber" name="contactNumber" minlength="10" maxlength="10" required value="<%= isEdit ? ticket.getContactNumber() : "" %>" placeholder="10-digit number"/>
                     </div>
 
                     <div class="form-group">

@@ -32,6 +32,7 @@ public class TicketServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
+        //insert and update
         if (id == 0) {
             int generatedId = service.createTicket(t);
             session.setAttribute("currentTicketId", generatedId);
@@ -49,6 +50,7 @@ public class TicketServlet extends HttpServlet {
         String action = req.getParameter("action");
         if (action == null) action = "LIST";
 
+        //ticket delete ,update
         if (action.equals("EDIT")) {
             int id = Integer.parseInt(req.getParameter("id"));
             Ticket ticket = service.getTicket(id);
