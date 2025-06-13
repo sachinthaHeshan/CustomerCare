@@ -1,4 +1,84 @@
-# CustomerCare
+# PulseCare CustomerCare System
+
+PulseCare is a web-based customer care management system designed to streamline customer support operations, including ticketing, FAQs, feedback, and inquiries. The project is built using Java Servlets, JSP, and MySQL.
+
+## Features
+
+- **User Authentication**: Secure login and registration for customers, support staff, and admins.
+- **Ticket Management**: Create, view, edit, and delete support tickets.
+- **FAQ Management**: Admins/support can manage FAQs; customers can view public FAQs.
+- **Feedback System**: Customers can submit, edit, and view feedback; admins/support can manage feedback.
+- **Inquiry Handling**: Customers can submit inquiries and view their status.
+- **Role-Based Access**: Different views and permissions for customers, support, and admin users.
+
+## Project Structure
+
+```
+CustomerCare/
+├── src/
+│   └── main/
+│       ├── java/com/customercare/
+│       │   ├── controller/   # Servlets for handling requests
+│       │   ├── dao/          # Data access objects
+│       │   ├── listener/     # Application listeners
+│       │   ├── model/        # JavaBeans for domain models
+│       │   ├── service/      # Business logic
+│       │   └── util/         # Utility classes (DB, constants)
+│       └── webapp/
+│           ├── auth/         # Login, register, auth JSPs
+│           ├── faq/          # FAQ management JSPs
+│           ├── feedback/     # Feedback JSPs
+│           ├── inquiry/      # Inquiry JSPs
+│           ├── layout/       # Header, sidebar
+│           ├── tickets/      # Ticket management JSPs
+│           ├── styles/       # CSS files
+│           ├── asserts/      # Images
+│           └── WEB-INF/      # web.xml, libraries
+├── build/                    # Compiled classes
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+- Java 8 or higher
+- Apache Tomcat 9+
+- MySQL Server
+- Maven (optional, for build automation)
+
+### Database Setup
+1. Create a MySQL database named `customercare`.
+2. Update the database credentials in `DBUtil.java` if needed:
+   - URL: `jdbc:mysql://localhost:3306/customercare`
+   - USER: `root`
+   - PASSWORD: `12345678Abc`
+3. Import the required tables and sample data (see your SQL scripts).
+
+### Build & Deploy
+1. Compile the project (use your IDE or `javac`).
+2. Deploy the `src/main/webapp` directory to your Tomcat webapps folder.
+3. Ensure all required JARs are in `WEB-INF/lib` (JSTL, Servlet API, MySQL Connector, etc.).
+4. Start Tomcat and access the app at `http://localhost:8080/CustomerCare/`.
+
+## Usage
+- Register or log in as a customer to submit tickets, feedback, and inquiries.
+- Admin/support users can manage tickets, FAQs, and feedback.
+- Use the sidebar for navigation; role-based options are shown.
+
+## Technologies Used
+- Java Servlets & JSP
+- MySQL
+- JSTL
+- HTML5, CSS3 (custom styles)
+- Apache Tomcat
+
+## Authors
+- [Your Name Here]
+
+## License
+This project is for educational purposes.
+
+---
 
 ## 🛠️ How to Set Up the Project Locally
 
